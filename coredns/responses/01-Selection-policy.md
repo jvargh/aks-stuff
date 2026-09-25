@@ -6,6 +6,7 @@
 
 - [Introduction](#introduction)
 - [Answer](#answer)
+  - [Can Microsoft change the AKS-managed Corefile to sequential?](#can-microsoft-change-the-aks-managed-corefile-to-sequential)
 - [Detailed theory](#detailed-theory)
   - [Policy semantics](#policy-semantics)
   - [Transport errors, DNS RCODEs, and health](#transport-errors-dns-rcodes-and-health)
@@ -58,6 +59,18 @@ forward . 10.0.0.20 10.0.0.21 {
 However, the premise that the current AKS behavior is round-robin must first be verified. In CoreDNS 1.13.1, omitting `policy` means `random`, not `round_robin`. The established `aks01day2` baseline used `mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20` and its managed Corefile contained `forward . /etc/resolv.conf` with no explicit policy. Therefore, its effective policy was the version-matched default, `random`.
 
 A domain-specific `coredns-custom` server block can use the built-in `forward` plugin with `policy sequential`. This validation does not prove that the AKS-managed root forwarder can be globally replaced or overridden in a supported way. Obtain current Microsoft guidance before attempting that cluster-wide production change.
+
+##### Can Microsoft change the AKS-managed Corefile to sequential?
+
+**Microsoft controls the AKS-managed Corefile, but there is no documented customer setting that asks AKS to change its managed root `forward` block from the default policy to `sequential`.** Microsoft could change the managed implementation through an AKS product update, but customers cannot directly edit that main Corefile or rely on a support request to make a customer-specific change to it.
+
+Microsoft's AKS documentation states that AKS is a managed service, customers cannot modify the main CoreDNS Corefile, and supported customization must use the separate `coredns-custom` ConfigMap. Therefore:
+
+- **For a specific DNS domain:** use a supported `.server` entry in `coredns-custom` and place `policy sequential` inside that custom forward block.
+- **For every externally forwarded DNS query:** the current documentation does not provide a supported customer option to replace the AKS-managed root directive `forward . /etc/resolv.conf` with a sequential policy.
+- **If the requirement is a Microsoft-managed global change:** raise it with Microsoft as a product/support question or feature request. Do not present it as an available AKS configuration until Microsoft confirms and documents that capability.
+
+Reference: [Customize CoreDNS for Azure Kubernetes Service](https://learn.microsoft.com/en-us/azure/aks/coredns-custom).
 
 #### Detailed theory
 
