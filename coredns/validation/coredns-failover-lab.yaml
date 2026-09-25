@@ -1,0 +1,569 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: coredns-failover-validation
+  labels:
+    app.kubernetes.io/part-of: coredns-failover-validation
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: upstream-primary
+  namespace: coredns-failover-validation
+data:
+  Corefile: |
+    .:53 {
+        errors
+        log
+        prometheus :9153
+        template IN A answer.validation.test {
+            answer "{{ .Name }} 30 IN A 192.0.2.10"
+        }
+        template IN A rcode.validation.test {
+            rcode SERVFAIL
+        }
+        template IN NS . {
+            rcode NOERROR
+        }
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: upstream-secondary
+  namespace: coredns-failover-validation
+data:
+  Corefile: |
+    .:53 {
+        errors
+        log
+        prometheus :9153
+        template IN A answer.validation.test {
+            answer "{{ .Name }} 30 IN A 192.0.2.20"
+        }
+        template IN A rcode.validation.test {
+            answer "{{ .Name }} 30 IN A 192.0.2.20"
+        }
+        template IN NS . {
+            rcode NOERROR
+        }
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: resolver-round-robin
+  namespace: coredns-failover-validation
+data:
+  Corefile: |
+    .:53 {
+        errors
+        log
+        ready
+        health
+        prometheus :9153
+        forward . 127.0.0.1 {
+            policy round_robin
+            max_fails 1
+            health_check 500ms
+        }
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: resolver-sequential
+  namespace: coredns-failover-validation
+data:
+  Corefile: |
+    .:53 {
+        errors
+        log
+        ready
+        health
+        prometheus :9153
+        forward . 127.0.0.1 {
+            policy sequential
+            max_fails 1
+            health_check 500ms
+        }
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: resolver-rcode-failover
+  namespace: coredns-failover-validation
+data:
+  Corefile: |
+    .:53 {
+        errors
+        log
+        ready
+        health
+        prometheus :9153
+        forward . 127.0.0.1 {
+            policy sequential
+            max_fails 1
+            health_check 500ms
+            failover SERVFAIL
+        }
+    }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: upstream-primary
+  namespace: coredns-failover-validation
+spec:
+  selector:
+    app.kubernetes.io/name: upstream-primary
+  ports:
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+      targetPort: dns-udp
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: dns-tcp
+    - name: metrics
+      port: 9153
+      protocol: TCP
+      targetPort: metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: upstream-secondary
+  namespace: coredns-failover-validation
+spec:
+  selector:
+    app.kubernetes.io/name: upstream-secondary
+  ports:
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+      targetPort: dns-udp
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: dns-tcp
+    - name: metrics
+      port: 9153
+      protocol: TCP
+      targetPort: metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resolver-round-robin
+  namespace: coredns-failover-validation
+spec:
+  selector:
+    app.kubernetes.io/name: resolver-round-robin
+  ports:
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+      targetPort: dns-udp
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: dns-tcp
+    - name: metrics
+      port: 9153
+      protocol: TCP
+      targetPort: metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resolver-sequential
+  namespace: coredns-failover-validation
+spec:
+  selector:
+    app.kubernetes.io/name: resolver-sequential
+  ports:
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+      targetPort: dns-udp
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: dns-tcp
+    - name: metrics
+      port: 9153
+      protocol: TCP
+      targetPort: metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resolver-rcode-failover
+  namespace: coredns-failover-validation
+spec:
+  selector:
+    app.kubernetes.io/name: resolver-rcode-failover
+  ports:
+    - name: dns-udp
+      port: 53
+      protocol: UDP
+      targetPort: dns-udp
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: dns-tcp
+    - name: metrics
+      port: 9153
+      protocol: TCP
+      targetPort: metrics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upstream-primary
+  namespace: coredns-failover-validation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: upstream-primary
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: upstream-primary
+        app.kubernetes.io/part-of: coredns-failover-validation
+    spec:
+      containers:
+        - name: coredns
+          image: mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20
+          args:
+            - -conf
+            - /etc/coredns/Corefile
+          ports:
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: metrics
+              containerPort: 9153
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 20Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: config
+              mountPath: /etc/coredns
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: upstream-primary
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upstream-secondary
+  namespace: coredns-failover-validation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: upstream-secondary
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: upstream-secondary
+        app.kubernetes.io/part-of: coredns-failover-validation
+    spec:
+      containers:
+        - name: coredns
+          image: mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20
+          args:
+            - -conf
+            - /etc/coredns/Corefile
+          ports:
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: metrics
+              containerPort: 9153
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 20Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: config
+              mountPath: /etc/coredns
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: upstream-secondary
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resolver-round-robin
+  namespace: coredns-failover-validation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: resolver-round-robin
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: resolver-round-robin
+        app.kubernetes.io/part-of: coredns-failover-validation
+    spec:
+      containers:
+        - name: coredns
+          image: mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20
+          args:
+            - -conf
+            - /etc/coredns/Corefile
+          ports:
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: metrics
+              containerPort: 9153
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8181
+          resources:
+            requests:
+              cpu: 10m
+              memory: 20Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: config
+              mountPath: /etc/coredns
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: resolver-round-robin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resolver-sequential
+  namespace: coredns-failover-validation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: resolver-sequential
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: resolver-sequential
+        app.kubernetes.io/part-of: coredns-failover-validation
+    spec:
+      containers:
+        - name: coredns
+          image: mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20
+          args:
+            - -conf
+            - /etc/coredns/Corefile
+          ports:
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: metrics
+              containerPort: 9153
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8181
+          resources:
+            requests:
+              cpu: 10m
+              memory: 20Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: config
+              mountPath: /etc/coredns
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: resolver-sequential
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resolver-rcode-failover
+  namespace: coredns-failover-validation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: resolver-rcode-failover
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: resolver-rcode-failover
+        app.kubernetes.io/part-of: coredns-failover-validation
+    spec:
+      containers:
+        - name: coredns
+          image: mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20
+          args:
+            - -conf
+            - /etc/coredns/Corefile
+          ports:
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: metrics
+              containerPort: 9153
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8181
+          resources:
+            requests:
+              cpu: 10m
+              memory: 20Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: config
+              mountPath: /etc/coredns
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: resolver-rcode-failover
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dns-client
+  namespace: coredns-failover-validation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: dns-client
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: dns-client
+        app.kubernetes.io/part-of: coredns-failover-validation
+    spec:
+      containers:
+        - name: dnsutils
+          image: registry.k8s.io/e2e-test-images/agnhost:2.39
+          args:
+            - pause
+          resources:
+            requests:
+              cpu: 5m
+              memory: 10Mi
+            limits:
+              cpu: 50m
+              memory: 32Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            seccompProfile:
+              type: RuntimeDefault

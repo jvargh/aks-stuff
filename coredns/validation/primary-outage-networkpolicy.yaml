@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: simulate-primary-dns-packet-loss
+  namespace: coredns-failover-validation
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: upstream-primary
+  policyTypes:
+    - Ingress
+  ingress: []
