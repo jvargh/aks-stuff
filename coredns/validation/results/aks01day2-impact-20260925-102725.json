@@ -1,0 +1,711 @@
+{
+  "Cluster": {
+    "Context": "aks01day2",
+    "KubernetesVersion": "v1.35.7",
+    "ManagedCoreDnsImage": "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20",
+    "ManagedCoreDnsAvailableBefore": 2,
+    "ManagedCoreDnsDesiredBefore": 2,
+    "ManagedCoreDnsResourceVersionBefore": "23332770",
+    "Namespace": "coredns-failover-validation-imp-20260925-102725",
+    "StartedUtc": "2026-09-25T14:27:25.7971787Z"
+  },
+  "IMP00": {
+    "Queries": [
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 3052,
+        "QueryMilliseconds": 4,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46597\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 6fb1f3ec6dc90ed5 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 4 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:17 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 3031,
+        "QueryMilliseconds": 12,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61068\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 79696d6c3935a66c (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 12 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:20 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2618,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 23885\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 2e690a6077e3ecfe (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:23 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2675,
+        "QueryMilliseconds": 4,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13022\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 8b90945fab36216c (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 4 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:25 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2720,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 37992\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: c4a28647be96cf98 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:28 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2697,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50389\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 990627e71f24c79d (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:31 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2816,
+        "QueryMilliseconds": 4,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50165\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: db9cf2ab1d883ad5 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 4 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:34 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2694,
+        "QueryMilliseconds": 96,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17930\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: cdb268bd539e99fa (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 96 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:36 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 3283,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 48025\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 5a7de49833407931 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:40 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2692,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20159\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: f356ea1c2e8cacea (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:28:42 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      }
+    ],
+    "DirectPrimary": {
+      "Server": "upstream-primary",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 2,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 2607,
+      "QueryMilliseconds": 0,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.10"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @upstream-primary answer.validation.test A +time=2 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 48301\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: fa326155e725df12 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.219.10#53(10.0.219.10)\n;; WHEN: Fri Sep 25 14:28:45 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "DirectSecondary": {
+      "Server": "upstream-secondary",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 2,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 2702,
+      "QueryMilliseconds": 0,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.20"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @upstream-secondary answer.validation.test A +time=2 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 28398\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 4b45da022b693daa (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.151.225#53(10.0.151.225)\n;; WHEN: Fri Sep 25 14:28:48 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "AvailableDeployments": 6,
+    "TotalDeployments": 6
+  },
+  "IMP01": {
+    "Server": "resolver-sequential",
+    "Name": "answer.validation.test",
+    "Transport": "UDP",
+    "TimeoutSeconds": 5,
+    "ExitCode": 0,
+    "ElapsedMilliseconds": 4609,
+    "QueryMilliseconds": 2000,
+    "Status": "NOERROR",
+    "Addresses": [
+      "192.0.2.20"
+    ],
+    "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52551\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 2ad7a39b448e2d92 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2000 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:29:04 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+  },
+  "IMP02": [
+    {
+      "Server": "resolver-sequential",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 1,
+      "ExitCode": 9,
+      "ElapsedMilliseconds": 3656,
+      "QueryMilliseconds": null,
+      "Status": "NO_RESPONSE",
+      "Addresses": [],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=1 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached\n\ncommand terminated with exit code 9"
+    },
+    {
+      "Server": "resolver-sequential",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 2,
+      "ExitCode": 9,
+      "ElapsedMilliseconds": 4652,
+      "QueryMilliseconds": null,
+      "Status": "NO_RESPONSE",
+      "Addresses": [],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=2 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached\n\ncommand terminated with exit code 9"
+    },
+    {
+      "Server": "resolver-sequential",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 5,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 4638,
+      "QueryMilliseconds": 2000,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.20"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 64344\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 647f9e4741ed2aab (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2000 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:29:52 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    }
+  ],
+  "IMP03": {
+    "First": {
+      "Server": "resolver-sequential",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 5,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 4777,
+      "QueryMilliseconds": 2004,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.20"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 14462\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: f1a03a80696cf9aa (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2004 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:30:09 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "Later": [
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 3278,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51403\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 95cd582910d9c9f7 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:30:14 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2625,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18841\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 02b3a17fde84c455 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:30:17 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2687,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 29285\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 63e0257a4176a606 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:30:20 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      }
+    ]
+  },
+  "IMP04": {
+    "Default": {
+      "Server": "resolver-sequential",
+      "Name": "rcode.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 5,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 3747,
+      "QueryMilliseconds": 0,
+      "Status": "SERVFAIL",
+      "Addresses": [],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential rcode.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 48701\n;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 07afe12188736cf0 (echoed)\n;; QUESTION SECTION:\n;rcode.validation.test.\t\tIN\tA\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:30:26 UTC 2026\n;; MSG SIZE  rcvd: 62\n"
+    },
+    "ExplicitFailover": {
+      "Server": "resolver-rcode-failover",
+      "Name": "rcode.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 5,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 2494,
+      "QueryMilliseconds": 0,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.20"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-rcode-failover rcode.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17113\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 31d7b466f9787c55 (echoed)\n;; QUESTION SECTION:\n;rcode.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nrcode.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.111.247#53(10.0.111.247)\n;; WHEN: Fri Sep 25 14:30:29 UTC 2026\n;; MSG SIZE  rcvd: 99\n"
+    }
+  },
+  "IMP05": {
+    "Server": "resolver-sequential",
+    "Name": "answer.validation.test",
+    "Transport": "UDP",
+    "TimeoutSeconds": 5,
+    "ExitCode": 9,
+    "ElapsedMilliseconds": 7616,
+    "QueryMilliseconds": null,
+    "Status": "NO_RESPONSE",
+    "Addresses": [],
+    "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached\n\ncommand terminated with exit code 9"
+  },
+  "IMP06": [
+    {
+      "Index": 1,
+      "ElapsedMilliseconds": 4915.0,
+      "Result": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 2,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2712,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.10"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=2 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 29040\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: b7f92f49327350e0 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:31:20 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      }
+    }
+  ],
+  "IMP10": {
+    "HealthyUdp": {
+      "Server": "resolver-sequential",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 5,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 2888,
+      "QueryMilliseconds": 0,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.10"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46772\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: ec15913b5a82e076 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:31:25 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "HealthyTcp": {
+      "Server": "resolver-sequential",
+      "Name": "answer.validation.test",
+      "Transport": "TCP",
+      "TimeoutSeconds": 5,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 2593,
+      "QueryMilliseconds": 0,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.10"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats +tcp\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 28269\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 183878a0c768ce46 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:31:27 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "FailedUdp": {
+      "Server": "resolver-sequential",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 5,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 5065,
+      "QueryMilliseconds": 2004,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.20"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 60458\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 671ccf63618b13cf (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2004 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:31:41 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "FailedTcp": {
+      "Server": "resolver-sequential",
+      "Name": "answer.validation.test",
+      "Transport": "TCP",
+      "TimeoutSeconds": 35,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 32888,
+      "QueryMilliseconds": 30000,
+      "Status": "SERVFAIL",
+      "Addresses": [],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=35 +tries=1 +comments +answer +stats +tcp\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 41872\n;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: e9c6cc192e9eba02 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; Query time: 30000 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:32:25 UTC 2026\n;; MSG SIZE  rcvd: 63\n"
+    }
+  },
+  "IMP11": {
+    "ExitCode": 0,
+    "PrimaryCount": 50,
+    "SecondaryCount": 0,
+    "Unexpected": []
+  },
+  "IMP12": {
+    "PodBefore": {
+      "Name": "resolver-sequential-5c748895fd-7hc7b",
+      "Uid": "e3af4bdb-8dec-4211-9099-0edf14dad091",
+      "RestartCount": 0
+    },
+    "PodAfter": {
+      "Name": "resolver-sequential-5c748895fd-7hc7b",
+      "Uid": "e3af4bdb-8dec-4211-9099-0edf14dad091",
+      "RestartCount": 0
+    },
+    "Query": {
+      "Server": "resolver-sequential",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 5,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 4684,
+      "QueryMilliseconds": 2000,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.20"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 1106\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 1b27ca2ad08fc117 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2000 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:33:10 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "HealthFailuresBefore": 0.0,
+    "HealthFailuresAfter": 2.0,
+    "RequestsBefore": 0.0,
+    "RequestsAfter": 1.0,
+    "LogLineCount": 5,
+    "Logs": [
+      "maxprocs: Updating GOMAXPROCS=1: using minimum allowed GOMAXPROCS",
+      ".:53",
+      "CoreDNS-1.13.1",
+      "linux/amd64, go1.26.5, 1db4568df6aaacda6ebbce87717156bd855f8103",
+      "[INFO] 10.244.3.44:48764 - 1106 \"A IN answer.validation.test. udp 63 false 4096\" NOERROR qr,aa,rd 101 2.002135626s"
+    ]
+  },
+  "IMP15": {
+    "HealthyPrimary": {
+      "Server": "upstream-primary",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 2,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 2511,
+      "QueryMilliseconds": 0,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.10"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @upstream-primary answer.validation.test A +time=2 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 29415\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 46eb7f1bbcf90830 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.219.10#53(10.0.219.10)\n;; WHEN: Fri Sep 25 14:33:22 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "HealthySecondary": {
+      "Server": "upstream-secondary",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 2,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 2701,
+      "QueryMilliseconds": 0,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.20"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @upstream-secondary answer.validation.test A +time=2 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20919\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 2784d472dd363364 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.151.225#53(10.0.151.225)\n;; WHEN: Fri Sep 25 14:33:25 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "AbsentName": {
+      "Server": "resolver-sequential",
+      "Name": "intentionally-absent.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 5,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 2908,
+      "QueryMilliseconds": 4,
+      "Status": "SERVFAIL",
+      "Addresses": [],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential intentionally-absent.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 12060\n;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: abcd73d57fd584d3 (echoed)\n;; QUESTION SECTION:\n;intentionally-absent.validation.test. IN A\n\n;; Query time: 4 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:33:28 UTC 2026\n;; MSG SIZE  rcvd: 77\n"
+    },
+    "FaultedPrimary": {
+      "Server": "upstream-primary",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 1,
+      "ExitCode": 9,
+      "ElapsedMilliseconds": 3580,
+      "QueryMilliseconds": null,
+      "Status": "NO_RESPONSE",
+      "Addresses": [],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @upstream-primary answer.validation.test A +time=1 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; connection timed out; no servers could be reached\n\ncommand terminated with exit code 9"
+    },
+    "HealthySecondaryDuringFault": {
+      "Server": "upstream-secondary",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 2,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 2600,
+      "QueryMilliseconds": 0,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.20"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @upstream-secondary answer.validation.test A +time=2 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 49757\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 57415f61d2309114 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.151.225#53(10.0.151.225)\n;; WHEN: Fri Sep 25 14:33:38 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    },
+    "RestoredPrimary": {
+      "Server": "upstream-primary",
+      "Name": "answer.validation.test",
+      "Transport": "UDP",
+      "TimeoutSeconds": 2,
+      "ExitCode": 0,
+      "ElapsedMilliseconds": 3201,
+      "QueryMilliseconds": 0,
+      "Status": "NOERROR",
+      "Addresses": [
+        "192.0.2.10"
+      ],
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @upstream-primary answer.validation.test A +time=2 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 59396\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: e5d2430defec42e3 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.10\n\n;; Query time: 0 msec\n;; SERVER: 10.0.219.10#53(10.0.219.10)\n;; WHEN: Fri Sep 25 14:33:43 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+    }
+  },
+  "IMP16": [
+    {
+      "Cycle": 1,
+      "First": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 4793,
+        "QueryMilliseconds": 2004,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 56442\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: d2e707424d7a2fa0 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2004 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:33:57 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      "Later": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2510,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31252\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 37dbe43aa655d252 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:34:02 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      }
+    },
+    {
+      "Cycle": 2,
+      "First": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 4713,
+        "QueryMilliseconds": 2004,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18491\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: a22335cf08b45bd6 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2004 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:34:18 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      "Later": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2506,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50565\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 4ba182a4c96d8b7b (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:34:23 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      }
+    },
+    {
+      "Cycle": 3,
+      "First": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 4766,
+        "QueryMilliseconds": 2000,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42799\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 5d6666124ae14fcf (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2000 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:34:40 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      "Later": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2696,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50919\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: edb97bc2b9a0d0c6 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:34:44 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      }
+    },
+    {
+      "Cycle": 4,
+      "First": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 4700,
+        "QueryMilliseconds": 2004,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44875\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 134fc60e22e07239 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2004 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:35:01 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      "Later": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2612,
+        "QueryMilliseconds": 4,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51018\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 6c31e6635116e181 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 4 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:35:06 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      }
+    },
+    {
+      "Cycle": 5,
+      "First": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 4434,
+        "QueryMilliseconds": 2004,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27610\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 6fb3bfa1cc75cfa4 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 2004 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:35:22 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      },
+      "Later": {
+        "Server": "resolver-sequential",
+        "Name": "answer.validation.test",
+        "Transport": "UDP",
+        "TimeoutSeconds": 5,
+        "ExitCode": 0,
+        "ElapsedMilliseconds": 2597,
+        "QueryMilliseconds": 0,
+        "Status": "NOERROR",
+        "Addresses": [
+          "192.0.2.20"
+        ],
+        "Output": "\n; <<>> DiG 9.16.27 <<>> @resolver-sequential answer.validation.test A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 63887\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: b9e3faf37b7f6fa5 (echoed)\n;; QUESTION SECTION:\n;answer.validation.test.\t\tIN\tA\n\n;; ANSWER SECTION:\nanswer.validation.test.\t30\tIN\tA\t192.0.2.20\n\n;; Query time: 0 msec\n;; SERVER: 10.0.119.21#53(10.0.119.21)\n;; WHEN: Fri Sep 25 14:35:27 UTC 2026\n;; MSG SIZE  rcvd: 101\n"
+      }
+    }
+  ],
+  "IMP17": {
+    "NamespaceAbsent": true,
+    "BaseAvailableDeployments": 6,
+    "BaseTotalDeployments": 6,
+    "BaseDnsStatus": "NOERROR",
+    "BaseDnsAddress": "192.0.2.10",
+    "BaseDnsQueryMilliseconds": 3,
+    "ManagedCoreDnsAvailableAfter": 2,
+    "ManagedCoreDnsDesiredAfter": 2,
+    "ManagedCoreDnsResourceVersionAfter": "23332770"
+  },
+  "CompletedUtc": "2026-09-25T14:35:54.0206847Z"
+}
