@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061c33"/>
+      <stop offset="0.5" stop-color="#08375a"/>
+      <stop offset="1" stop-color="#075985"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cluster" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0ea5e9" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#2563eb" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="dns" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7dd3fc"/>
+      <stop offset="0.48" stop-color="#0284c7"/>
+      <stop offset="1" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="server" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e0f2fe"/>
+      <stop offset="1" stop-color="#7dd3fc"/>
+    </linearGradient>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#020617" flood-opacity="0.5"/>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#7dd3fc"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#4ade80"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="500" fill="url(#background)"/>
+  <circle cx="596" cy="250" r="245" fill="url(#glow)"/>
+
+  <g opacity="0.12" fill="#bae6fd">
+    <circle cx="78" cy="62" r="3"/><circle cx="168" cy="105" r="2"/><circle cx="278" cy="53" r="3"/>
+    <circle cx="399" cy="91" r="2"/><circle cx="512" cy="51" r="2"/><circle cx="684" cy="79" r="3"/>
+    <circle cx="807" cy="46" r="2"/><circle cx="918" cy="92" r="3"/><circle cx="1089" cy="55" r="2"/>
+    <circle cx="1134" cy="172" r="3"/><circle cx="1046" cy="224" r="2"/><circle cx="1098" cy="426" r="3"/>
+    <circle cx="951" cy="446" r="2"/><circle cx="792" cy="420" r="3"/><circle cx="655" cy="457" r="2"/>
+    <circle cx="483" cy="431" r="3"/><circle cx="323" cy="459" r="2"/><circle cx="188" cy="421" r="3"/>
+    <circle cx="69" cy="353" r="2"/>
+  </g>
+
+  <!-- AKS cluster boundary -->
+  <path d="M95 250 L180 95 L380 60 L530 165 L500 360 L330 445 L150 385 Z"
+        fill="url(#cluster)" stroke="#38bdf8" stroke-width="3" stroke-opacity="0.8"
+        stroke-dasharray="10 8"/>
+  <path d="M117 250 L194 116 L369 85 L501 176 L474 342 L324 417 L169 365 Z"
+        fill="none" stroke="#7dd3fc" stroke-width="1.5" stroke-opacity="0.25"/>
+
+  <!-- Kubernetes wheel mark -->
+  <g transform="translate(178 165)" opacity="0.92" filter="url(#shadow)">
+    <circle r="58" fill="#0b5cab" stroke="#bae6fd" stroke-width="3"/>
+    <circle r="16" fill="#e0f2fe"/>
+    <g stroke="#e0f2fe" stroke-width="8" stroke-linecap="round">
+      <path d="M0 -42 L0 -22"/><path d="M33 -26 L17 -13"/><path d="M41 9 L21 5"/>
+      <path d="M18 38 L9 20"/><path d="M-18 38 L-9 20"/><path d="M-41 9 L-21 5"/>
+      <path d="M-33 -26 L-17 -13"/>
+    </g>
+    <circle r="39" fill="none" stroke="#e0f2fe" stroke-width="5"/>
+  </g>
+
+  <!-- Workload pods -->
+  <g filter="url(#shadow)">
+    <g transform="translate(165 295)">
+      <rect x="-52" y="-33" width="104" height="66" rx="17" fill="#f0f9ff" stroke="#38bdf8" stroke-width="3"/>
+      <rect x="-30" y="-13" width="20" height="26" rx="5" fill="#0ea5e9"/>
+      <rect x="0" y="-13" width="20" height="26" rx="5" fill="#2563eb"/>
+      <rect x="30" y="-13" width="10" height="26" rx="5" fill="#7dd3fc"/>
+    </g>
+    <g transform="translate(306 333)">
+      <rect x="-52" y="-33" width="104" height="66" rx="17" fill="#f0f9ff" stroke="#38bdf8" stroke-width="3"/>
+      <rect x="-31" y="-13" width="22" height="26" rx="5" fill="#2563eb"/>
+      <rect x="1" y="-13" width="22" height="26" rx="5" fill="#0ea5e9"/>
+      <circle cx="35" cy="0" r="11" fill="#7dd3fc"/>
+    </g>
+  </g>
+
+  <!-- Cluster service routing -->
+  <g fill="none" stroke="#7dd3fc" stroke-width="5" stroke-linecap="round" opacity="0.95">
+    <path d="M218 295 C274 278 335 256 406 252" marker-end="url(#arrowBlue)"/>
+    <path d="M357 320 C386 300 397 278 410 264" marker-end="url(#arrowBlue)"/>
+  </g>
+
+  <!-- CoreDNS resolver -->
+  <g transform="translate(535 250)" filter="url(#shadow)">
+    <circle r="100" fill="#082f49" stroke="#7dd3fc" stroke-width="4"/>
+    <circle r="79" fill="url(#dns)" stroke="#e0f2fe" stroke-width="2"/>
+    <ellipse rx="55" ry="79" fill="none" stroke="#e0f2fe" stroke-width="3" opacity="0.8"/>
+    <ellipse rx="22" ry="79" fill="none" stroke="#e0f2fe" stroke-width="3" opacity="0.8"/>
+    <path d="M-75 -28 C-30 -12 30 -12 75 -28 M-78 18 C-28 36 28 36 78 18"
+          fill="none" stroke="#e0f2fe" stroke-width="3" opacity="0.8"/>
+    <circle r="108" fill="none" stroke="#38bdf8" stroke-width="3" stroke-opacity="0.38"/>
+  </g>
+
+  <!-- Query split -->
+  <circle cx="692" cy="250" r="12" fill="#e0f2fe" stroke="#38bdf8" stroke-width="4"/>
+  <path d="M636 250 L678 250" stroke="#7dd3fc" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Upstream servers -->
+  <g filter="url(#shadow)">
+    <g transform="translate(960 148)">
+      <rect x="-95" y="-70" width="190" height="140" rx="24" fill="url(#server)" stroke="#e0f2fe" stroke-width="3"/>
+      <rect x="-67" y="-39" width="134" height="29" rx="10" fill="#075985"/>
+      <rect x="-67" y="2" width="134" height="29" rx="10" fill="#0369a1"/>
+      <circle cx="45" cy="-24" r="6" fill="#f87171"/>
+      <circle cx="45" cy="16" r="6" fill="#f87171"/>
+      <circle cx="-45" cy="-24" r="5" fill="#7dd3fc"/>
+      <circle cx="-45" cy="16" r="5" fill="#7dd3fc"/>
+    </g>
+    <g transform="translate(960 352)">
+      <rect x="-95" y="-70" width="190" height="140" rx="24" fill="url(#server)" stroke="#dcfce7" stroke-width="3"/>
+      <rect x="-67" y="-39" width="134" height="29" rx="10" fill="#166534"/>
+      <rect x="-67" y="2" width="134" height="29" rx="10" fill="#15803d"/>
+      <circle cx="45" cy="-24" r="6" fill="#4ade80"/>
+      <circle cx="45" cy="16" r="6" fill="#4ade80"/>
+      <circle cx="-45" cy="-24" r="5" fill="#bbf7d0"/>
+      <circle cx="-45" cy="16" r="5" fill="#bbf7d0"/>
+    </g>
+  </g>
+
+  <!-- Failed primary route -->
+  <path d="M704 241 C770 218 807 179 850 156" fill="none" stroke="#f87171" stroke-width="6"
+        stroke-linecap="round" stroke-dasharray="12 10"/>
+  <g transform="translate(788 194)" stroke="#fecaca" stroke-width="8" stroke-linecap="round" filter="url(#softGlow)">
+    <path d="M-14 -14 L14 14 M14 -14 L-14 14"/>
+  </g>
+
+  <!-- Successful fallback route -->
+  <path d="M704 259 C771 282 806 324 851 346" fill="none" stroke="#4ade80" stroke-width="7"
+        stroke-linecap="round" marker-end="url(#arrowGreen)" filter="url(#softGlow)"/>
+
+  <!-- Health probes -->
+  <path d="M843 315 C785 286 770 266 709 257" fill="none" stroke="#a7f3d0" stroke-width="2.5"
+        stroke-dasharray="4 8" opacity="0.75"/>
+  <path d="M842 184 C787 214 769 236 708 247" fill="none" stroke="#fca5a5" stroke-width="2.5"
+        stroke-dasharray="4 8" opacity="0.55"/>
+
+  <!-- Failure and success symbols -->
+  <g transform="translate(1083 148)">
+    <circle r="32" fill="#7f1d1d" stroke="#fecaca" stroke-width="3"/>
+    <path d="M-11 -11 L11 11 M11 -11 L-11 11" stroke="#fff1f2" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(1083 352)">
+    <circle r="32" fill="#14532d" stroke="#bbf7d0" stroke-width="3"/>
+    <path d="M-13 1 L-3 12 L15 -12" fill="none" stroke="#f0fdf4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

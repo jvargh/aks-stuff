@@ -1,0 +1,287 @@
+{
+  "CaseId": "SP-14-CUSTOM-CONFIG-OBSERVATION",
+  "Attempt": 1,
+  "Status": "FAIL",
+  "Failure": "Managed CoreDNS availability gate: 1 available replica of 2 desired at sample 06.",
+  "RequiredSnapshots": 31,
+  "CapturedSnapshots": 7,
+  "ObservationSeconds": 232.9252019,
+  "Scope": "Read-only; custom UID, data hash, and resourceVersion unchanged in all captured snapshots. This incomplete attempt does not pass the 900-second test.",
+  "Recovery": "At 2026-10-02T13:20:30.0970145Z CoreDNS was 2/2 Available. Pods were recreated at 13:19:17Z and 13:19:27Z; sampled events do not establish who initiated replacement.",
+  "ClusterWritesByTest": 0,
+  "Samples": [
+    {
+      "ObservedUtc": "2026-10-02T09:15:26.2144476-04:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "22928117",
+      "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+      "DataKeys": [
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23696902",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T09:16:04.9611527-04:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "22928117",
+      "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+      "DataKeys": [
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23696902",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T09:16:43.4188642-04:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "22928117",
+      "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+      "DataKeys": [
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23696902",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T09:17:22.6559032-04:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "22928117",
+      "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+      "DataKeys": [
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23696902",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T09:18:00.7243205-04:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "22928117",
+      "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+      "DataKeys": [
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23696902",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T09:18:39.2444079-04:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "22928117",
+      "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+      "DataKeys": [
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23696902",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T09:19:19.1396495-04:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "22928117",
+      "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+      "DataKeys": [
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23706784",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 1
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "CaseId": "SP-16-CUSTOM-CONFIG-PATCH-PERSISTENCE",
+  "Status": "FAIL",
+  "StartedUtc": "2026-10-02T14:16:20.2013888+00:00",
+  "Context": "aks01day2",
+  "TestKey": "sp16-8516efac7300.server",
+  "QueryName": "answer.sp16-8516efac7300.test.",
+  "ExpectedAddress": "192.0.2.123",
+  "Rule": "sp16-8516efac7300.test:53 {\r\n    errors\r\n    hosts {\r\n        192.0.2.123 answer.sp16-8516efac7300.test\r\n        ttl 0\r\n        no_reverse\r\n    }\r\n}",
+  "Samples": [],
+  "Queries": [
+    {
+      "Stage": "before-patch",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:16:46.6186435+00:00",
+      "Query": "answer.sp16-8516efac7300.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 20,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-8516efac7300.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 5299\n;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 6cbde126d0f7e754 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-8516efac7300.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t30\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 20 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:16:47 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:16:50.2070014+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 4,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 39995\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 28de26bde88eea55 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t10.0.0.1\n\n;; Query time: 4 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:16:50 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "coredns-855b679d84-dknfp",
+      "ObservedUtc": "2026-10-02T14:16:53.8010381+00:00",
+      "Query": "answer.sp16-8516efac7300.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 20,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-8516efac7300.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 2072\n;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: a87958bad54aee38 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-8516efac7300.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t30\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 20 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:16:54 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "coredns-855b679d84-dknfp",
+      "ObservedUtc": "2026-10-02T14:16:56.9180553+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 22236\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: edefeed29ef945d0 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 24 IN A\t10.0.0.1\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:16:57 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "coredns-855b679d84-svlvj",
+      "ObservedUtc": "2026-10-02T14:17:00.0195903+00:00",
+      "Query": "answer.sp16-8516efac7300.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-8516efac7300.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 19690\n;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 7ef714a770cd72b4 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-8516efac7300.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t17\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:17:00 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "coredns-855b679d84-svlvj",
+      "ObservedUtc": "2026-10-02T14:17:03.2261618+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 32352\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 2782c437ba7f1275 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t10.0.0.1\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:17:03 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:21:58.0018492+00:00",
+      "Query": "answer.sp16-8516efac7300.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 28,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-8516efac7300.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 55161\n;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 0ee50cae90aa26d0 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-8516efac7300.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t30\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 28 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:21:58 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:22:01.9171938+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 11544\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 229823191d690e76 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t10.0.0.1\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:22:02 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "coredns-66fbcd68d8-gzch7",
+      "ObservedUtc": "2026-10-02T14:22:05.5380714+00:00",
+      "Query": "answer.sp16-8516efac7300.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 12,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-8516efac7300.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 26155\n;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 55dc6b2570760965 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-8516efac7300.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t30\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 12 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:22:06 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "coredns-66fbcd68d8-gzch7",
+      "ObservedUtc": "2026-10-02T14:22:09.0172045+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 100,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 1374\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 4cc9b7b3784c69e9 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t10.0.0.1\n\n;; Query time: 100 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:22:09 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "coredns-66fbcd68d8-wkthm",
+      "ObservedUtc": "2026-10-02T14:22:12.3183955+00:00",
+      "Query": "answer.sp16-8516efac7300.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 100,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-8516efac7300.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 22216\n;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: a14faece41f7b319 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-8516efac7300.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t16\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 100 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:22:12 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "coredns-66fbcd68d8-wkthm",
+      "ObservedUtc": "2026-10-02T14:22:15.6148630+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 48615\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 94fc7c250120932d (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 17 IN A\t10.0.0.1\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:22:16 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    }
+  ],
+  "Rollouts": [],
+  "Errors": [
+    "kubectl rollout status deployment/coredns -n kube-system --timeout=240s --request-timeout=300s failed: Waiting for deployment \"coredns\" rollout to finish: 1 old replicas are pending termination...\nWaiting for deployment \"coredns\" rollout to finish: 1 old replicas are pending termination...\nerror: timed out waiting for the condition"
+  ],
+  "Before": {
+    "ObservedUtc": "2026-10-02T14:16:31.4693359+00:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.35.7",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "22928117",
+    "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+    "DataKeys": [
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+    ],
+    "ManagedDeploymentResourceVersion": "23707464",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  },
+  "ManagedCorefileResourceVersionBefore": "22591546",
+  "AfterCleanup": {
+    "ObservedUtc": "2026-10-02T14:21:49.1273063+00:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.35.7",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "23733445",
+    "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+    "DataKeys": [
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+    ],
+    "ManagedDeploymentResourceVersion": "23733676",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  },
+  "ManagedCorefileResourceVersionAfter": "22591546",
+  "Cleanup": "PASS: test key removed, original data/UID restored, fresh pods and DNS verified.",
+  "CompletedUtc": "2026-10-02T14:22:17.6290492+00:00",
+  "ParserDiagnostic": {
+    "ObservedUtc": "2026-10-02T14:19:37.8023989+00:00",
+    "Cause": "CoreDNS hosts plugin rejected ttl 0; activation pods failed parser validation.",
+    "Pods": [
+      {
+        "Name": "coredns-5d7dc89b88-mjc8n",
+        "Uid": "3453c84e-2e25-4545-851a-955bd31f174f",
+        "Phase": "Running",
+        "Ready": false,
+        "Restarts": 4
+      },
+      {
+        "Name": "coredns-5d7dc89b88-xf84g",
+        "Uid": "47f128f4-69cf-448c-9382-683dcca8fca5",
+        "Phase": "Running",
+        "Ready": false,
+        "Restarts": 4
+      },
+      {
+        "Name": "coredns-855b679d84-svlvj",
+        "Uid": "b7937e90-0a77-490c-bc63-eea05c3afc36",
+        "Phase": "Running",
+        "Ready": true,
+        "Restarts": 0
+      }
+    ],
+    "ParserError": "plugin/hosts: /etc/coredns/custom/sp16-8516efac7300.server:5 - Error during parsing: ttl provided is invalid"
+  },
+  "Attempt": 1,
+  "Redactions": [
+    "Private IPv4 addresses in DNS evidence redacted; original ConfigMap backup retained privately, not published."
+  ]
+}

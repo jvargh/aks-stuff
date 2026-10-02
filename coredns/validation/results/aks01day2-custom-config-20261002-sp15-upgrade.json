@@ -1,0 +1,450 @@
+{
+  "CaseId": "SP-15-CUSTOM-CONFIG-UPGRADE",
+  "Status": "FAIL_OR_BLOCKED",
+  "Context": "aks01day2",
+  "Scope": "Control plane only; node pools must remain unchanged.",
+  "ApprovedFrom": "1.35.7",
+  "ApprovedTarget": "1.36.3",
+  "QueryName": "microsoft.com.",
+  "Limitations": "This existing custom server block forwards apex queries upstream. The check does not test its wildcard rewrite or prove every replica loaded the block.",
+  "OperationSamples": [
+    {
+      "ObservedUtc": "2026-10-02T14:49:23.9912012+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:49:57.3158011+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:50:30.6641662+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:51:04.1131279+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:51:37.4883591+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:52:11.0801112+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:52:44.4647875+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:53:20.2763232+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:53:55.5437140+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:54:30.0835642+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:55:06.4106275+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Upgrading",
+        "version": "1.36.3"
+      }
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:55:43.2023077+00:00",
+      "State": {
+        "autoUpgradeChannel": "none",
+        "name": "aks01day2",
+        "pools": [
+          {
+            "name": "syspool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          },
+          {
+            "name": "userpool",
+            "requestedVersion": "1.35.7",
+            "state": "Succeeded",
+            "version": "1.35.7"
+          }
+        ],
+        "power": "Running",
+        "requestedVersion": "1.36.3",
+        "state": "Succeeded",
+        "version": "1.36.3"
+      }
+    }
+  ],
+  "Sp16CompletedUtc": "2026-10-02T10:47:47.7366769-04:00",
+  "AzureBefore": {
+    "autoUpgradeChannel": "none",
+    "name": "aks01day2",
+    "pools": [
+      {
+        "name": "syspool",
+        "requestedVersion": "1.35.7",
+        "state": "Succeeded",
+        "version": "1.35.7"
+      },
+      {
+        "name": "userpool",
+        "requestedVersion": "1.35.7",
+        "state": "Succeeded",
+        "version": "1.35.7"
+      }
+    ],
+    "power": "Running",
+    "requestedVersion": "1.35.7",
+    "state": "Succeeded",
+    "version": "1.35.7"
+  },
+  "Before": {
+    "ObservedUtc": "2026-10-02T14:48:20.5347403+00:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.35.7",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "23744277",
+    "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+    "DataKeys": [
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+    ],
+    "ManagedDeploymentResourceVersion": "23744478",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  },
+  "DeprecatedApiCheck": "No observed deprecated-API metric series removed in 1.36; not a complete compatibility audit.",
+  "BeforeQuery": {
+    "ObservedUtc": "2026-10-02T14:48:39.6217066+00:00",
+    "Addresses": [
+      "150.171.110.195"
+    ],
+    "Output": "\n; <<>> DiG 9.16.27 <<>> @[kube-dns Service IP] microsoft.com. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 10746\n;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: e05a6d1f6721d4ea (echoed)\n;; QUESTION SECTION:\n;microsoft.com.\t\t\tIN\tA\n\n;; ANSWER SECTION:\nmicrosoft.com.\t\t1592\tIN\tA\t150.171.110.195\n\n;; Query time: 0 msec\n;; SERVER: [kube-dns Service IP]#53([kube-dns Service IP])\n;; WHEN: Fri Oct 02 14:48:40 UTC 2026\n;; MSG SIZE  rcvd: 83\n"
+  },
+  "ExpectedAddress": "150.171.110.195",
+  "UpgradeStartedUtc": "2026-10-02T14:48:39.6662362+00:00",
+  "SubmitExitCode": 0,
+  "SubmitOutput": "",
+  "UpgradeCompletedUtc": "2026-10-02T14:55:43.2110925+00:00",
+  "AzureAfter": {
+    "autoUpgradeChannel": "none",
+    "name": "aks01day2",
+    "pools": [
+      {
+        "name": "syspool",
+        "requestedVersion": "1.35.7",
+        "state": "Succeeded",
+        "version": "1.35.7"
+      },
+      {
+        "name": "userpool",
+        "requestedVersion": "1.35.7",
+        "state": "Succeeded",
+        "version": "1.35.7"
+      }
+    ],
+    "power": "Running",
+    "requestedVersion": "1.36.3",
+    "state": "Succeeded",
+    "version": "1.36.3"
+  },
+  "After": {
+    "ObservedUtc": "2026-10-02T14:55:56.6832792+00:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.36.3",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "23744277",
+    "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+    "DataKeys": [
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.14.3-11"
+    ],
+    "ManagedDeploymentResourceVersion": "23745973",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  },
+  "Error": "kubectl exec -n coredns-failover-validation deployment/dns-client -- dig @[private IPv4 redacted] microsoft.com. A +time=5 +tries=1 +comments +answer +stats failed: error: Internal error occurred: error sending request: Post \"https://[private IPv4 redacted]:10250/exec/coredns-failover-validation/dns-client-78f8b58dc-cjf74/dnsutils?command=dig&command=%4010.0.0.10&command=microsoft.com.&command=A&command=%2Btime%3D5&command=%2Btries%3D1&command=%2Bcomments&command=%2Banswer&command=%2Bstats&error=1&output=1\": proxy error from localhost:9443 while dialing [private IPv4 redacted]:10250, code 500: 500 Internal Server Error",
+  "StoppedUtc": "2026-10-02T14:56:02.0675288+00:00"
+}

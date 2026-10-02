@@ -1,0 +1,1846 @@
+{
+  "CaseId": "SP-16-CUSTOM-CONFIG-PATCH-PERSISTENCE",
+  "Status": "PASS",
+  "StartedUtc": "2026-10-02T14:24:04.5125497+00:00",
+  "Context": "aks01day2",
+  "TestKey": "sp16-dd8b44139468.server",
+  "QueryName": "answer.sp16-dd8b44139468.test.",
+  "ExpectedAddress": "192.0.2.123",
+  "Rule": "sp16-dd8b44139468.test:53 {\r\n    errors\r\n    hosts {\r\n        192.0.2.123 answer.sp16-dd8b44139468.test\r\n        ttl 1\r\n        no_reverse\r\n    }\r\n}",
+  "Samples": [
+    {
+      "ObservedUtc": "2026-10-02T14:26:47.6348604+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:27:26.1479062+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:28:05.0702939+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:28:43.5704291+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:29:23.5139505+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:30:01.9058649+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:30:42.5988684+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:31:21.7110739+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:32:02.0969738+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:32:41.3729298+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:33:20.0558916+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:34:00.2619033+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:34:39.0712099+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:35:18.2455401+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:35:58.5017952+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:36:40.1569106+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:37:22.8120285+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:38:02.1671612+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:38:41.4871220+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:39:20.3201894+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:39:58.9510602+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:40:38.9154693+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:41:17.7413742+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23735670",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:41:56.8488680+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23742069",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:42:36.0673163+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23742069",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:43:14.2225165+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23742069",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:43:52.7385290+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23742069",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:44:31.5462732+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23742069",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:45:12.5451929+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23742069",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:45:51.6178780+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23742069",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    },
+    {
+      "ObservedUtc": "2026-10-02T14:46:31.4229211+00:00",
+      "Context": "aks01day2",
+      "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+      "KubernetesVersion": "v1.35.7",
+      "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+      "CustomResourceVersion": "23735051",
+      "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+      "DataKeys": [
+        "sp16-dd8b44139468.server",
+        "test.server"
+      ],
+      "BinaryDataKeys": [],
+      "Labels": {
+        "addonmanager.kubernetes.io/mode": "EnsureExists",
+        "k8s-app": "kube-dns",
+        "kubernetes.io/cluster-service": "true"
+      },
+      "Owners": [
+        null
+      ],
+      "FieldManagers": [
+        {
+          "Manager": "kubectl-create",
+          "Operation": "Update",
+          "Time": "2025-07-13T01:06:27Z"
+        },
+        {
+          "Manager": "kubectl-client-side-apply",
+          "Operation": "Update",
+          "Time": "2026-09-24T04:34:21Z"
+        },
+        {
+          "Manager": "kubectl-patch",
+          "Operation": "Update",
+          "Time": "2026-10-02T14:25:13Z"
+        }
+      ],
+      "CoreDnsImages": [
+        "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+      ],
+      "ManagedDeploymentResourceVersion": "23742069",
+      "DesiredReplicas": 2,
+      "AvailableReplicas": 2
+    }
+  ],
+  "Queries": [
+    {
+      "Stage": "before-patch",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:24:33.1322055+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 12,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 35724\n;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 684e7dd579b83565 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t30\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 12 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:24:33 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:24:36.4193542+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 37015\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 0b3f9b9b495a5967 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:24:36 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "coredns-66fbcd68d8-gzch7",
+      "ObservedUtc": "2026-10-02T14:24:39.5386501+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 20,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 39131\n;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 951eb9fa449a66b1 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t30\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 20 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:24:40 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "coredns-66fbcd68d8-gzch7",
+      "ObservedUtc": "2026-10-02T14:24:42.8157704+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31170\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: bde3bd9fd1a3990c (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 24 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:24:43 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "coredns-66fbcd68d8-wkthm",
+      "ObservedUtc": "2026-10-02T14:24:45.9139747+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 46981\n;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: ef42a3ceffe07711 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t18\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:24:46 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "before-patch",
+      "Target": "coredns-66fbcd68d8-wkthm",
+      "ObservedUtc": "2026-10-02T14:24:49.1127596+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26636\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 9ccf446547b6318a (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:24:49 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "isolated-syntax-validation",
+      "Target": "sp16-dd8b44139468-syntax",
+      "ObservedUtc": "2026-10-02T14:25:02.6177917+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 34005\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 936be523201a22ad (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:25:03 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-activation",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:25:36.7139767+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 20901\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 585d349e2e7886e4 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:25:37 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-activation",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:25:40.1000469+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 37985\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 5b5afb92831db6a6 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:25:40 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-activation",
+      "Target": "coredns-6c959df957-f5pkm",
+      "ObservedUtc": "2026-10-02T14:25:43.4178864+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 23567\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: a9e5e1d9043459ab (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:25:43 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-activation",
+      "Target": "coredns-6c959df957-f5pkm",
+      "ObservedUtc": "2026-10-02T14:25:46.5177733+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 39741\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 66642dbb4148821c (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:25:47 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-activation",
+      "Target": "coredns-6c959df957-mk969",
+      "ObservedUtc": "2026-10-02T14:25:49.7170625+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 40142\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 39f8a401cb8928e5 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:25:50 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-activation",
+      "Target": "coredns-6c959df957-mk969",
+      "ObservedUtc": "2026-10-02T14:25:53.2168158+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18948\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 658af9bf575df33d (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 17 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:25:53 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-second-restart",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:26:21.4174842+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 96,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42968\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 5cdf304b703e3e40 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 96 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:26:21 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-second-restart",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:26:25.1174565+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27564\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: a5d3337b9b5a3d9c (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:26:25 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-second-restart",
+      "Target": "coredns-98586cfcd-mmdvs",
+      "ObservedUtc": "2026-10-02T14:26:28.3159269+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 48158\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 379ba5406c1cc832 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:26:28 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-second-restart",
+      "Target": "coredns-98586cfcd-mmdvs",
+      "ObservedUtc": "2026-10-02T14:26:31.5155171+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26778\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 490b56eae8c73990 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:26:32 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-second-restart",
+      "Target": "coredns-98586cfcd-wrj8x",
+      "ObservedUtc": "2026-10-02T14:26:34.8181729+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 6854\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 636cd1f58bf64d3f (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:26:35 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-second-restart",
+      "Target": "coredns-98586cfcd-wrj8x",
+      "ObservedUtc": "2026-10-02T14:26:38.0120615+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 13238\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: cf1cf4bc3df9749a (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 18 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:26:38 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-observation",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:46:42.2081168+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 5959\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 6ad2cffc6561aa99 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:46:42 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-observation",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:46:45.9773987+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51787\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 2b5a99fec0baa606 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:46:46 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-observation",
+      "Target": "coredns-98586cfcd-mmdvs",
+      "ObservedUtc": "2026-10-02T14:46:49.5553750+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 33505\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 9afd7c224db49042 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:46:49 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-observation",
+      "Target": "coredns-98586cfcd-mmdvs",
+      "ObservedUtc": "2026-10-02T14:46:53.2124518+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 45594\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 2cf8d674c4a257c3 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 23 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:46:53 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-observation",
+      "Target": "coredns-98586cfcd-t4cqr",
+      "ObservedUtc": "2026-10-02T14:46:56.8102108+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 53921\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 08af4d06985bae4a (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; ANSWER SECTION:\nanswer.sp16-dd8b44139468.test. 1 IN\tA\t192.0.2.123\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:46:57 UTC 2026\n;; MSG SIZE  rcvd: 115\n"
+    },
+    {
+      "Stage": "after-observation",
+      "Target": "coredns-98586cfcd-t4cqr",
+      "ObservedUtc": "2026-10-02T14:47:00.2145031+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 23137\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 4071746e7eab5692 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:47:00 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:47:28.6359115+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 24,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 11685\n;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 96d94c1be198a4c6 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t30\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 24 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:47:29 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "kube-dns Service",
+      "ObservedUtc": "2026-10-02T14:47:31.9121270+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 43255\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: f8efab6c9063cb05 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 30 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:47:32 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "coredns-866dd5fbb5-dbpbj",
+      "ObservedUtc": "2026-10-02T14:47:35.5406139+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 24,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 13701\n;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 6dfa067d1218e9b1 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t30\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 24 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:47:36 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "coredns-866dd5fbb5-dbpbj",
+      "ObservedUtc": "2026-10-02T14:47:38.9108086+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 22042\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 4585ca370031ee17 (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 24 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:47:39 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "coredns-866dd5fbb5-t2l67",
+      "ObservedUtc": "2026-10-02T14:47:42.2100319+00:00",
+      "Query": "answer.sp16-dd8b44139468.test.",
+      "Status": "NXDOMAIN",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] answer.sp16-dd8b44139468.test. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 46227\n;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 80e4bfb34feeb330 (echoed)\n;; QUESTION SECTION:\n;answer.sp16-dd8b44139468.test.\tIN\tA\n\n;; AUTHORITY SECTION:\n.\t\t\t17\tIN\tSOA\ta.root-servers.net. nstld.verisign-grs.com. 2026100200 1800 900 604800 86400\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:47:42 UTC 2026\n;; MSG SIZE  rcvd: 145\n"
+    },
+    {
+      "Stage": "after-cleanup",
+      "Target": "coredns-866dd5fbb5-t2l67",
+      "ObservedUtc": "2026-10-02T14:47:45.5116745+00:00",
+      "Query": "kubernetes.default.svc.cluster.local.",
+      "Status": "NOERROR",
+      "QueryMilliseconds": 0,
+      "Output": "\n; <<>> DiG 9.16.27 <<>> @[DNS server IP] kubernetes.default.svc.cluster.local. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; WARNING: .local is reserved for Multicast DNS\n;; You are currently testing what happens when an mDNS query is leaked to DNS\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18673\n;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n;; WARNING: recursion requested but not available\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 6c68fc088057190b (echoed)\n;; QUESTION SECTION:\n;kubernetes.default.svc.cluster.local. IN A\n\n;; ANSWER SECTION:\nkubernetes.default.svc.cluster.local. 17 IN A\t[private IPv4 redacted]\n\n;; Query time: 0 msec\n;; SERVER: [DNS server IP]#53([DNS server IP])\n;; WHEN: Fri Oct 02 14:47:46 UTC 2026\n;; MSG SIZE  rcvd: 129\n"
+    }
+  ],
+  "Rollouts": [
+    {
+      "Stage": "activation",
+      "StartedUtc": "2026-10-02T14:25:19.1643391+00:00",
+      "CompletedUtc": "2026-10-02T14:25:27.9579380+00:00",
+      "OldPodUids": [
+        "643f6f50-ce6c-42a9-96a2-19f3ce6b9d8d",
+        "9dd2fe47-28b4-4784-a1bf-443e844ac483"
+      ],
+      "NewPodUids": [
+        "e7a534ea-2245-4139-9f90-5acb32b447ea",
+        "f069ace8-d661-4f14-b2cb-171b24c006fa"
+      ]
+    },
+    {
+      "Stage": "persistence-restart",
+      "StartedUtc": "2026-10-02T14:26:05.7667138+00:00",
+      "CompletedUtc": "2026-10-02T14:26:14.2189039+00:00",
+      "OldPodUids": [
+        "e7a534ea-2245-4139-9f90-5acb32b447ea",
+        "f069ace8-d661-4f14-b2cb-171b24c006fa"
+      ],
+      "NewPodUids": [
+        "0db9ba8a-0575-4c08-9874-3ebcdb0b11b1",
+        "8a005dec-9387-4192-89e1-4fb3cd158863"
+      ]
+    }
+  ],
+  "Errors": [],
+  "Before": {
+    "ObservedUtc": "2026-10-02T14:24:17.0147855+00:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.35.7",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "23733445",
+    "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+    "DataKeys": [
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+    ],
+    "ManagedDeploymentResourceVersion": "23733676",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  },
+  "ManagedCorefileResourceVersionBefore": "22591546",
+  "SyntaxValidation": "PASS: same image served the exact rule before managed DNS was changed.",
+  "Patched": {
+    "ObservedUtc": "2026-10-02T14:26:01.6187470+00:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.35.7",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "23735051",
+    "PayloadSha256": "2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912",
+    "DataKeys": [
+      "sp16-dd8b44139468.server",
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      },
+      {
+        "Manager": "kubectl-patch",
+        "Operation": "Update",
+        "Time": "2026-10-02T14:25:13Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+    ],
+    "ManagedDeploymentResourceVersion": "23735255",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  },
+  "ObservationSeconds": 1183.785,
+  "AfterCleanup": {
+    "ObservedUtc": "2026-10-02T14:47:20.6587558+00:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.35.7",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "23744277",
+    "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+    "DataKeys": [
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+    ],
+    "ManagedDeploymentResourceVersion": "23744478",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  },
+  "ManagedCorefileResourceVersionAfter": "22591546",
+  "Cleanup": "PASS: test key removed, original data/UID restored, fresh pods and DNS verified.",
+  "CompletedUtc": "2026-10-02T14:47:47.7366769+00:00"
+}

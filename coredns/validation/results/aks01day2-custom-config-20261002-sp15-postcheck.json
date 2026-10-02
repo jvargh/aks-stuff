@@ -1,0 +1,112 @@
+{
+  "CaseId": "SP-15-CUSTOM-CONFIG-UPGRADE",
+  "Status": "FAIL_OR_BLOCKED",
+  "Scope": "Read-only post-upgrade retry; no second upgrade",
+  "StartedUtc": "2026-10-02T14:57:56.1835096+00:00",
+  "QueryName": "microsoft.com.",
+  "ExpectedAddress": "150.171.110.195",
+  "Before": {
+    "ObservedUtc": "2026-10-02T10:48:20.5347403-04:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.35.7",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "23744277",
+    "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+    "DataKeys": [
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20"
+    ],
+    "ManagedDeploymentResourceVersion": "23744478",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  },
+  "OriginalPostCheckFailure": "kubectl exec -n coredns-failover-validation deployment/dns-client -- dig @[private IPv4 redacted] microsoft.com. A +time=5 +tries=1 +comments +answer +stats failed: error: Internal error occurred: error sending request: Post \"https://[private IPv4 redacted]:10250/exec/coredns-failover-validation/dns-client-78f8b58dc-cjf74/dnsutils?command=dig&command=%4010.0.0.10&command=microsoft.com.&command=A&command=%2Btime%3D5&command=%2Btries%3D1&command=%2Bcomments&command=%2Banswer&command=%2Bstats&error=1&output=1\": proxy error from localhost:9443 while dialing [private IPv4 redacted]:10250, code 500: 500 Internal Server Error",
+  "AzureAfter": {
+    "pools": [
+      {
+        "name": "syspool",
+        "state": "Succeeded",
+        "version": "1.35.7"
+      },
+      {
+        "name": "userpool",
+        "state": "Succeeded",
+        "version": "1.35.7"
+      }
+    ],
+    "state": "Succeeded",
+    "version": "1.36.3"
+  },
+  "After": {
+    "ObservedUtc": "2026-10-02T14:58:18.8617371+00:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.36.3",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "23744277",
+    "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+    "DataKeys": [
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.14.3-11"
+    ],
+    "ManagedDeploymentResourceVersion": "23745973",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  },
+  "AfterQuery": {
+    "ObservedUtc": "2026-10-02T14:58:28.5411572+00:00",
+    "Addresses": [
+      "150.171.109.183"
+    ],
+    "Output": "\n; <<>> DiG 9.16.27 <<>> @[kube-dns Service IP] microsoft.com. A +time=5 +tries=1 +comments +answer +stats\n; (1 server found)\n;; global options: +cmd\n;; Got answer:\n;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47495\n;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1\n\n;; OPT PSEUDOSECTION:\n; EDNS: version: 0, flags:; udp: 4096\n; COOKIE: 6ca44fa2f92f139d (echoed)\n;; QUESTION SECTION:\n;microsoft.com.\t\t\tIN\tA\n\n;; ANSWER SECTION:\nmicrosoft.com.\t\t519\tIN\tA\t150.171.109.183\n\n;; Query time: 4 msec\n;; SERVER: [kube-dns Service IP]#53([kube-dns Service IP])\n;; WHEN: Fri Oct 02 14:58:28 UTC 2026\n;; MSG SIZE  rcvd: 83\n"
+  },
+  "Error": "Post-upgrade public DNS answer differs from the predeclared baseline; investigate upstream rotation, do not infer ConfigMap loss.",
+  "CompletedUtc": "2026-10-02T14:58:28.6513881+00:00"
+}

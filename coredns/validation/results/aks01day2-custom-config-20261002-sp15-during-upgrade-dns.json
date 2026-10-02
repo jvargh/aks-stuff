@@ -1,0 +1,63 @@
+{
+  "ObservedUtc": "2026-10-02T14:54:15.1050295+00:00",
+  "Status": "PASS: read-only supplemental checks during upgrade, not upgrade completion",
+  "Checks": [
+    {
+      "Target": "upstream-primary",
+      "Status": "NOERROR",
+      "Answer": "192.0.2.10",
+      "QueryMilliseconds": 4
+    },
+    {
+      "Target": "upstream-secondary",
+      "Status": "NOERROR",
+      "Answer": "192.0.2.20",
+      "QueryMilliseconds": 0
+    },
+    {
+      "Target": "resolver-sequential",
+      "Status": "NOERROR",
+      "Answer": "192.0.2.10",
+      "QueryMilliseconds": 0
+    }
+  ],
+  "Snapshot": {
+    "ObservedUtc": "2026-10-02T14:54:14.9328683+00:00",
+    "Context": "aks01day2",
+    "NamespaceUid": "983cc034-1514-47d7-ac4a-9aad07cee9fd",
+    "KubernetesVersion": "v1.36.3",
+    "CustomUid": "733fabca-7d66-4c20-8d54-08e8d89dd46b",
+    "CustomResourceVersion": "23744277",
+    "PayloadSha256": "038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63",
+    "DataKeys": [
+      "test.server"
+    ],
+    "BinaryDataKeys": [],
+    "Labels": {
+      "addonmanager.kubernetes.io/mode": "EnsureExists",
+      "k8s-app": "kube-dns",
+      "kubernetes.io/cluster-service": "true"
+    },
+    "Owners": [
+      null
+    ],
+    "FieldManagers": [
+      {
+        "Manager": "kubectl-create",
+        "Operation": "Update",
+        "Time": "2025-07-13T01:06:27Z"
+      },
+      {
+        "Manager": "kubectl-client-side-apply",
+        "Operation": "Update",
+        "Time": "2026-09-24T04:34:21Z"
+      }
+    ],
+    "CoreDnsImages": [
+      "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.14.3-11"
+    ],
+    "ManagedDeploymentResourceVersion": "23745973",
+    "DesiredReplicas": 2,
+    "AvailableReplicas": 2
+  }
+}

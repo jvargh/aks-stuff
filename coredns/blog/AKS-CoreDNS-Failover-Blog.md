@@ -1,5 +1,7 @@
 # CoreDNS in AKS: service discovery, upstream DNS, and failover
 
+![AKS workload pods sending DNS queries through CoreDNS, with a failed primary upstream and a successful backup path](./AKS-CoreDNS-Failover-Banner.png)
+
 > **TL;DR:** A healthy CoreDNS pod does not guarantee that every application name will resolve. Azure Kubernetes Service (AKS) uses CoreDNS for Domain Name System (DNS) service discovery and upstream forwarding, and understanding those two roles helps you troubleshoot the right part of the system. Explore how they work, what AKS manages, and what failure tests reveal in the [CoreDNS guidance and test suites on GitHub](https://github.com/jvargh/aks-stuff/tree/main/coredns).
 >
 > **Who this is for:** Platform engineers, application developers, and operations teams who want a practical understanding of CoreDNS in AKS.
