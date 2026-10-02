@@ -70,7 +70,7 @@ A domain-specific `coredns-custom` server block can use the built-in `forward` p
 
 ##### Can Microsoft change the AKS-managed Corefile to sequential?
 
-**Microsoft controls the AKS-managed Corefile, but there is no documented customer setting that asks AKS to change its managed root** `**forward**` **block from the default policy to** `**sequential**`**.** Microsoft could change the managed implementation through an AKS product update, but customers cannot directly edit that main Corefile or rely on a support request to make a customer-specific change to it.
+**Microsoft controls the AKS-managed Corefile, but there is no documented customer setting that asks AKS to change its managed root `forward` block from the default policy to `sequential`.** Microsoft could change the managed implementation through an AKS product update, but customers cannot directly edit that main Corefile or rely on a support request to make a customer-specific change to it.
 
 Microsoft's AKS documentation states that AKS is a managed service, customers cannot modify the main CoreDNS Corefile, and supported customization must use the separate `coredns-custom` ConfigMap. Therefore:
 
@@ -115,20 +115,20 @@ The earlier SP-14 availability-related failure and SP-16 invalid-TTL failure wit
 
 ##### Persistence of custom configuration
 
-**The** `**coredns-custom**` **ConfigMap is the supported location for custom DNS configuration in AKS, and its entries are expected to remain across normal AKS upgrades.** It is separate from the AKS-managed `coredns` ConfigMap, whose main configuration AKS controls.
+**The `coredns-custom` ConfigMap is the supported location for custom DNS configuration in AKS, and its entries are expected to remain across normal AKS upgrades.** It is separate from the AKS-managed `coredns` ConfigMap, whose main configuration AKS controls.
 
-**For the "patch once" question: a supported change to** `**coredns-custom**` **is expected to persist without periodic reapplication, but a full cluster rebuild is not the only event that can remove it.** CoreDNS pod restarts and node replacement do not themselves delete this separate Kubernetes object. However, a later administrator change, an apply/patch from a deployment pipeline, GitOps or Helm managing the same resource, or deletion and recreation of the ConfigMap can overwrite or remove the custom entries.
+**For the "patch once" question: a supported change to `coredns-custom` is expected to persist without periodic reapplication, but a full cluster rebuild is not the only event that can remove it.** CoreDNS pod restarts and node replacement do not themselves delete this separate Kubernetes object. However, a later administrator change, an apply/patch from a deployment pipeline, GitOps or Helm managing the same resource, or deletion and recreation of the ConfigMap can overwrite or remove the custom entries.
 
 If the whole cluster is recreated, deploy the custom configuration again as part of provisioning; replacing or reimaging nodes in the existing cluster is not the same operation. If GitOps or another deployment system owns the ConfigMap, update its desired-state manifest rather than relying only on a live patch that the next deployment might undo. This guidance applies to `coredns-custom`, not direct edits to the AKS-managed `coredns` ConfigMap.
 
 Our read-only checks found:
 
-*   `**coredns-custom**`**:** `addonmanager.kubernetes.io/mode=EnsureExists`.
-*   `**coredns**`**:** no `addonmanager.kubernetes.io/mode` label; it carries `app.kubernetes.io/managed-by=Eno`.
+*   **`coredns-custom`:** `addonmanager.kubernetes.io/mode=EnsureExists`.
+*   **`coredns`:** no `addonmanager.kubernetes.io/mode` label; it carries `app.kubernetes.io/managed-by=Eno`.
 
-`EnsureExists` and `Reconcile` are alternative values of the same label key, not separate labels. **We did not observe** `**Reconcile**` **on either ConfigMap.** Under the upstream add-on manager's documented behavior, `EnsureExists` creates a missing object rather than continually resetting an existing object's custom data.
+`EnsureExists` and `Reconcile` are alternative values of the same label key, not separate labels. **We did not observe `Reconcile` on either ConfigMap.** Under the upstream add-on manager's documented behavior, `EnsureExists` creates a missing object rather than continually resetting an existing object's custom data.
 
-However, these labels alone do not establish which controller currently acts on the resource or its schedule. **The absence of** `**Reconcile**` **does not mean the ConfigMap is never checked or reconciled.** Microsoft's published guidance does not specify a fixed interval that resets `coredns-custom` entries.
+However, these labels alone do not establish which controller currently acts on the resource or its schedule. **The absence of `Reconcile` does not mean the ConfigMap is never checked or reconciled.** Microsoft's published guidance does not specify a fixed interval that resets `coredns-custom` entries.
 
 The read-only **SP-14** run completed 31 snapshots over **1,154.510 seconds**, with no changes to the existing custom configuration, object identity, or resourceVersion. The separate **SP-16** run then added one unique rule once. It returned exactly `192.0.2.123` with `NOERROR` and TTL 1 through the DNS Service and both managed replicas after activation, after a second restart without reapplying the rule, and after **31 snapshots over 1,183.785 seconds**. The patched data hash and resourceVersion stayed unchanged throughout that observation, with CoreDNS 2/2 Available at every sample. Cleanup removed the test key, restored the original data and UID, and verified normal Service discovery plus `NXDOMAIN` for the removed name. This establishes finite persistence through the tested CoreDNS pod replacement, not AKS upgrades, node replacement, indefinite persistence, or continuous availability. See the [SP-16 result and retained attempts](../validation/results/aks01day2-custom-config-20261002-sp16.md).
 
@@ -167,7 +167,7 @@ The read-only check on **2026-10-02** returned:
 | `coredns-custom` | `EnsureExists` | Not present |
 | `coredns` | Not present | `Eno` |
 
-**Neither ConfigMap showed** `**addonmanager.kubernetes.io/mode=Reconcile**`**.** The main `coredns` ConfigMap did not have the add-on manager mode key at all. Earlier references to `Reconcile` explain an upstream mode; they are not a claim that this mode was observed on either AKS ConfigMap.
+**Neither ConfigMap showed `addonmanager.kubernetes.io/mode=Reconcile`.** The main `coredns` ConfigMap did not have the add-on manager mode key at all. Earlier references to `Reconcile` explain an upstream mode; they are not a claim that this mode was observed on either AKS ConfigMap.
 
 For a focused PowerShell view that explicitly reports missing labels:
 
@@ -529,7 +529,7 @@ $explicitPolicies
 
 **Evidence to capture:** Raw image string, full Corefile, the relevant server block, command timestamp, current context, and versioned documentation URL.
 
-**Established** `**aks01day2**` **evidence:** Image `mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20`; the managed root forwarder was `forward . /etc/resolv.conf` with no explicit selection policy. For CoreDNS 1.13.1, the resulting default is `random`.
+**Established `aks01day2` evidence:** Image `mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20`; the managed root forwarder was `forward . /etc/resolv.conf` with no explicit selection policy. For CoreDNS 1.13.1, the resulting default is `random`.
 
 ---
 
@@ -561,7 +561,7 @@ $defaultRandomCounts | Format-Table -AutoSize
 
 **Evidence to capture:** Generated ConfigMap YAML, Deployment YAML, image, pod IP, raw ordered answers, grouped counts, resolver logs, and upstream logs.
 
-**Established** `**aks01day2**` **evidence:** On 2026-09-24, the corrected helper created and rolled out `resolver-random-default`. In the human-run sample shown for this case, all 100 uncached queries succeeded: `192.0.2.10` returned 42 times and `192.0.2.20` returned 58 times. An independent verification run also completed 100 queries successfully and produced the reverse 58/42 split. Both runs returned only the two expected addresses and selected both healthy upstreams. The differing distributions are expected for a random policy and must not be interpreted as a guaranteed 50/50 ratio.
+**Established `aks01day2` evidence:** On 2026-09-24, the corrected helper created and rolled out `resolver-random-default`. In the human-run sample shown for this case, all 100 uncached queries succeeded: `192.0.2.10` returned 42 times and `192.0.2.20` returned 58 times. An independent verification run also completed 100 queries successfully and produced the reverse 58/42 split. Both runs returned only the two expected addresses and selected both healthy upstreams. The differing distributions are expected for a random policy and must not be interpreted as a guaranteed 50/50 ratio.
 
 ---
 
@@ -594,7 +594,7 @@ $explicitRandomCounts | Format-Table -AutoSize
 
 **Evidence to capture:** Corefile, rollout status, image, ordered answers, counts, and `kubectl logs deployment/resolver-random-explicit -n $ns`.
 
-**Established** `**aks01day2**` **evidence:** On 2026-09-24, the human-run sample created and successfully rolled out `resolver-random-explicit` with `policy random`. All 100 uncached queries succeeded: `192.0.2.10` returned 47 times and `192.0.2.20` returned 53 times. No unexpected address was reported. This establishes parser acceptance of `policy random` in the tested CoreDNS image and confirms that both healthy upstreams were eligible. The 47/53 split is one probabilistic sample, not a balancing guarantee or proof of an exact 50/50 distribution.
+**Established `aks01day2` evidence:** On 2026-09-24, the human-run sample created and successfully rolled out `resolver-random-explicit` with `policy random`. All 100 uncached queries succeeded: `192.0.2.10` returned 47 times and `192.0.2.20` returned 53 times. No unexpected address was reported. This establishes parser acceptance of `policy random` in the tested CoreDNS image and confirms that both healthy upstreams were eligible. The 47/53 split is one probabilistic sample, not a balancing guarantee or proof of an exact 50/50 distribution.
 
 ---
 
@@ -632,7 +632,7 @@ $roundRobinCounts | Format-Table -AutoSize
 
 **Evidence to capture:** Resolver Corefile, ordered answers, grouped counts, resolver logs, both upstream logs, and pod readiness.
 
-**Established** `**aks01day2**` **evidence:** On 2026-09-24, after removing the stale primary-outage policy, restarting the resolver, and proving both upstreams directly reachable, all 20 queries succeeded. `192.0.2.10` returned 10 times and `192.0.2.20` returned 10 times. The exact 10/10 split is an observation from this serial sample, not a general concurrency or fairness guarantee.
+**Established `aks01day2` evidence:** On 2026-09-24, after removing the stale primary-outage policy, restarting the resolver, and proving both upstreams directly reachable, all 20 queries succeeded. `192.0.2.10` returned 10 times and `192.0.2.20` returned 10 times. The exact 10/10 split is an observation from this serial sample, not a general concurrency or fairness guarantee.
 
 ---
 
@@ -668,7 +668,7 @@ $sequentialHealthy | Group-Object | Select-Object Name,Count
 
 **Evidence to capture:** Effective Corefile, primary and secondary Service IPs, ordered answers, grouped counts, logs, and absence of outage NetworkPolicies.
 
-**Established** `**aks01day2**` **evidence:** On 2026-09-24, after removing the stale primary-outage policy, restarting the resolver, and proving both upstreams directly reachable, all 20 queries returned the first configured upstream answer, `192.0.2.10`. No secondary or unexpected answer occurred.
+**Established `aks01day2` evidence:** On 2026-09-24, after removing the stale primary-outage policy, restarting the resolver, and proving both upstreams directly reachable, all 20 queries returned the first configured upstream answer, `192.0.2.10`. No secondary or unexpected answer occurred.
 
 ---
 
@@ -710,7 +710,7 @@ finally {
 
 **Evidence to capture:** NetworkPolicy YAML, first full `dig` output including status and query time, subsequent answers, resolver logs, health metrics, and NetworkPolicy-capability confirmation.
 
-**Established** `**aks01day2**` **evidence:** On 2026-09-24, the first query returned the secondary answer `192.0.2.20` in 2,003 ms. After health detection, all 10 follow-up queries returned `192.0.2.20`. The outage policy was removed in cleanup. This is consistent with the earlier 1,999 ms first-failure observation and 0-3 ms known-unhealthy observations.
+**Established `aks01day2` evidence:** On 2026-09-24, the first query returned the secondary answer `192.0.2.20` in 2,003 ms. After health detection, all 10 follow-up queries returned `192.0.2.20`. The outage policy was removed in cleanup. This is consistent with the earlier 1,999 ms first-failure observation and 0-3 ms known-unhealthy observations.
 
 ---
 
@@ -782,7 +782,7 @@ finally {
 
 **Evidence to capture:** Extension Corefile and Deployment, NetworkPolicy YAML, before/after ordered answers, first full `dig` output and query time, logs, and metrics.
 
-**Established** `**aks01day2**` **evidence:** On 2026-09-24, all five healthy precondition queries returned the preferred secondary answer `192.0.2.20`. With secondary ingress silently dropped, the first fallback returned `192.0.2.10` in 2,007 ms, and all 10 follow-up queries returned `192.0.2.10`. The secondary-outage policy was removed in cleanup.
+**Established `aks01day2` evidence:** On 2026-09-24, all five healthy precondition queries returned the preferred secondary answer `192.0.2.20`. With secondary ingress silently dropped, the first fallback returned `192.0.2.10` in 2,007 ms, and all 10 follow-up queries returned `192.0.2.10`. The secondary-outage policy was removed in cleanup.
 
 ---
 
@@ -836,7 +836,7 @@ finally {
 
 **Evidence to capture:** Deletion timestamp, every timestamped answer, time-to-first-primary, resolver logs, health-check counters, and final NetworkPolicy list.
 
-**Established** `**aks01day2**` **evidence:** Recovery has been observed in repeated runs. The primary answer returned after approximately 3,645 ms in the original validation and within 8,829 ms in the 2026-09-24 independent rerun. Both observations were inside the declared 10-second window. The elapsed value includes `kubectl exec` and API overhead and is not a production recovery SLO.
+**Established `aks01day2` evidence:** Recovery has been observed in repeated runs. The primary answer returned after approximately 3,645 ms in the original validation and within 8,829 ms in the 2026-09-24 independent rerun. Both observations were inside the declared 10-second window. The elapsed value includes `kubectl exec` and API overhead and is not a production recovery SLO.
 
 ---
 
@@ -879,7 +879,7 @@ kubectl get configmap resolver-sequential resolver-rcode-failover `
 
 **Evidence to capture:** Both full `dig` outputs, both Corefiles, resolver logs, and upstream logs showing which endpoint received each query.
 
-**Established** `**aks01day2**` **evidence:** Revalidated on 2026-09-24 after removing outage policies and restarting both resolvers. Without `failover SERVFAIL`, the result was `SERVFAIL` with no A answer. With `failover SERVFAIL`, the result was `NOERROR` with `192.0.2.20`.
+**Established `aks01day2` evidence:** Revalidated on 2026-09-24 after removing outage policies and restarting both resolvers. Without `failover SERVFAIL`, the result was `SERVFAIL` with no A answer. With `failover SERVFAIL`, the result was `NOERROR` with `192.0.2.20`.
 
 ---
 
@@ -940,7 +940,7 @@ $repeatability | Format-Table -AutoSize
 
 **Evidence to capture:** Trial table, raw answers retained separately, Corefiles, pod identities, restart counts, timestamps, and any throttling or query errors.
 
-**Established** `**aks01day2**` **evidence:** The complete five-trial matrix ran on 2026-09-24 with 2,000 successful queries and no unexpected answers. Default-random primary counts by trial were 46, 45, 51, 55, and 47, totaling 244 primary and 256 secondary. Explicit-random primary counts were 58, 43, 50, 41, and 60, totaling 252 primary and 248 secondary. Round-robin returned 50 primary and 50 secondary in every trial, totaling 250/250. Sequential returned 100 primary and zero secondary in every trial, totaling 500/0. The random totals demonstrate variation and endpoint coverage, not a guaranteed ratio.
+**Established `aks01day2` evidence:** The complete five-trial matrix ran on 2026-09-24 with 2,000 successful queries and no unexpected answers. Default-random primary counts by trial were 46, 45, 51, 55, and 47, totaling 244 primary and 256 secondary. Explicit-random primary counts were 58, 43, 50, 41, and 60, totaling 252 primary and 248 secondary. Round-robin returned 50 primary and 50 secondary in every trial, totaling 250/250. Sequential returned 100 primary and zero secondary in every trial, totaling 500/0. The random totals demonstrate variation and endpoint coverage, not a guaranteed ratio.
 
 ---
 
@@ -984,7 +984,7 @@ kubectl get pod -n $ns -l app.kubernetes.io/name=resolver-sequential `
 
 **Evidence to capture:** Corefiles, readiness table, logs, image tag, image ID, version output or its error, Kubernetes events, and documentation tag.
 
-**Established** `**aks01day2**` **evidence:** Revalidated on 2026-09-24 for all five resolver variants. Omitted-policy random, explicit `random`, `round_robin`, `sequential`, and secondary-first `sequential` each had one Ready and Available replica, used `mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20`, and had no parser errors in the sampled logs. The binary reported CoreDNS 1.13.1, and the sequential pod image ID was `sha256:b1b16649b9a06534471ed990bb952b756f456241fe3c0a378da33cfe7dedfa51`.
+**Established `aks01day2` evidence:** Revalidated on 2026-09-24 for all five resolver variants. Omitted-policy random, explicit `random`, `round_robin`, `sequential`, and secondary-first `sequential` each had one Ready and Available replica, used `mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20`, and had no parser errors in the sampled logs. The binary reported CoreDNS 1.13.1, and the sequential pod image ID was `sha256:b1b16649b9a06534471ed990bb952b756f456241fe3c0a378da33cfe7dedfa51`.
 
 ---
 
@@ -1014,7 +1014,7 @@ Review the output against the current Microsoft document linked below. Do not ru
 
 **Evidence to capture:** Read-only YAML, Microsoft document retrieval date, proposed zone scope, policy Corefile, ownership approval, and a before/after resourceVersion comparison if a separately approved custom change is later performed.
 
-**Established** `**aks01day2**` **evidence:** Read-only inspection on 2026-09-24 showed two Available managed CoreDNS replicas. The managed `coredns` ConfigMap had resourceVersion `22591546`, label `app.kubernetes.io/managed-by: Eno`, root directive `forward . /etc/resolv.conf`, and no explicit selection policy. The existing `coredns-custom` ConfigMap contained one supported `.server` key named `test.server`. No `kube-system` resource was changed. This evidence confirms the customization boundary but does not authorize replacing the managed root forwarder.
+**Established `aks01day2` evidence:** Read-only inspection on 2026-09-24 showed two Available managed CoreDNS replicas. The managed `coredns` ConfigMap had resourceVersion `22591546`, label `app.kubernetes.io/managed-by: Eno`, root directive `forward . /etc/resolv.conf`, and no explicit selection policy. The existing `coredns-custom` ConfigMap contained one supported `.server` key named `test.server`. No `kube-system` resource was changed. This evidence confirms the customization boundary but does not authorize replacing the managed root forwarder.
 
 ---
 
@@ -1104,7 +1104,7 @@ finally {
 
 **Evidence to capture:** Pod UID, restart count, all three metric snapshots, timestamped logs, exact queries, outage apply/delete times, and CoreDNS image.
 
-**Established** `**aks01day2**` **evidence:** Revalidated on 2026-09-24 through the Kubernetes API metrics proxy, without a port-forward. After a fresh resolver restart, health-check failures increased from 0 before the outage to 4 during it and 9 after recovery probing. Forward request count increased from 0 to 1 during the outage query and to 2 after the recovery query. The recovery answer was `192.0.2.10`, and five timestamped resolver log lines were captured.
+**Established `aks01day2` evidence:** Revalidated on 2026-09-24 through the Kubernetes API metrics proxy, without a port-forward. After a fresh resolver restart, health-check failures increased from 0 before the outage to 4 during it and 9 after recovery probing. Forward request count increased from 0 to 1 during the outage query and to 2 after the recovery query. The recovery answer was `192.0.2.10`, and five timestamped resolver log lines were captured.
 
 ---
 
@@ -1152,7 +1152,7 @@ kubectl get configmap coredns -n kube-system `
 
 **Evidence to capture:** Delete output, final namespace and base Deployment status, empty extension-resource search, final managed CoreDNS status and resourceVersion, current context, and cleanup timestamp.
 
-**Established** `**aks01day2**` **evidence:** Executed on 2026-09-24. Both fault policies and all three extension resolver ConfigMaps and Deployments were removed. The base lab was reapplied and retained with all six base Deployments Available. No extension match remained. Managed CoreDNS retained two Available replicas, and the managed Corefile ConfigMap resourceVersion remained `22591546`.
+**Established `aks01day2` evidence:** Executed on 2026-09-24. Both fault policies and all three extension resolver ConfigMaps and Deployments were removed. The base lab was reapplied and retained with all six base Deployments Available. No extension match remained. Managed CoreDNS retained two Available replicas, and the managed Corefile ConfigMap resourceVersion remained `22591546`.
 
 ---
 
@@ -1207,7 +1207,7 @@ if ($clock.Elapsed.TotalSeconds -lt 900) { throw "Observation window was shorter
 
 **Evidence to capture:** All timestamped snapshots, the final result, any command error, and the selected observation window. Use the [management-label commands](#how-to-check-the-actual-management-labels) to record which labels and values actually exist; record absence explicitly rather than assuming `Reconcile`. Labels are context, not this test's pass/fail condition. If an unexpected change occurs, retain relevant API audit events and the owners/field managers. Do not automatically attribute the change to AKS.
 
-**Established** `**aks01day2**` **evidence:** PASS on 2026-10-02 for the second attempt, observing `kube-system/coredns-custom` on Kubernetes `v1.35.7` with CoreDNS image `mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20`. The 31 snapshots ran from `13:21:20.9144166Z` to `13:40:35.4671367Z`; the test timer measured 1,154.510 seconds, exceeding the 900-second requirement. All snapshots retained the single `test.server` key, no binary keys, UID `733fabca-7d66-4c20-8d54-08e8d89dd46b`, resourceVersion `22928117`, and payload SHA-256 `038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63`. CoreDNS was 2/2 Available in all 31 samples; its Deployment resourceVersion stayed `23707464` during this attempt. Attempt 1 failed the availability gate after seven snapshots over 232.925 seconds when CoreDNS was 1/2 Available; its custom data and identity remained unchanged, and that failure was not counted as a pass. Final checks found all six retained lab Deployments Available, zero lab NetworkPolicies, four Ready nodes, and a healthy primary answer `192.0.2.10` with `NOERROR` in 4 ms. The managed Corefile hash and ConfigMap resourceVersion `22591546` matched the earlier baseline. No cluster resource was changed, so no cleanup was needed. This establishes unchanged configuration at the sampled times, not the absence of controller checks, a reconciliation interval, continuous DNS availability, or upgrade persistence. See the [readable results](../validation/results/aks01day2-custom-config-20261002-live.md), [31-snapshot evidence](../validation/results/aks01day2-custom-config-20261002-sp14-attempt2.json), and [failed first attempt](../validation/results/aks01day2-custom-config-20261002-sp14-attempt1.json).
+**Established `aks01day2` evidence:** PASS on 2026-10-02 for the second attempt, observing `kube-system/coredns-custom` on Kubernetes `v1.35.7` with CoreDNS image `mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20`. The 31 snapshots ran from `13:21:20.9144166Z` to `13:40:35.4671367Z`; the test timer measured 1,154.510 seconds, exceeding the 900-second requirement. All snapshots retained the single `test.server` key, no binary keys, UID `733fabca-7d66-4c20-8d54-08e8d89dd46b`, resourceVersion `22928117`, and payload SHA-256 `038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63`. CoreDNS was 2/2 Available in all 31 samples; its Deployment resourceVersion stayed `23707464` during this attempt. Attempt 1 failed the availability gate after seven snapshots over 232.925 seconds when CoreDNS was 1/2 Available; its custom data and identity remained unchanged, and that failure was not counted as a pass. Final checks found all six retained lab Deployments Available, zero lab NetworkPolicies, four Ready nodes, and a healthy primary answer `192.0.2.10` with `NOERROR` in 4 ms. The managed Corefile hash and ConfigMap resourceVersion `22591546` matched the earlier baseline. No cluster resource was changed, so no cleanup was needed. This establishes unchanged configuration at the sampled times, not the absence of controller checks, a reconciliation interval, continuous DNS availability, or upgrade persistence. See the [readable results](../validation/results/aks01day2-custom-config-20261002-live.md), [31-snapshot evidence](../validation/results/aks01day2-custom-config-20261002-sp14-attempt2.json), and [failed first attempt](../validation/results/aks01day2-custom-config-20261002-sp14-attempt1.json).
 
 ---
 
@@ -1308,7 +1308,7 @@ if ($beforeUpgrade.KubernetesVersion -ceq $afterUpgrade.KubernetesVersion) {
 
 **Evidence to capture:** Before/after snapshots, full `dig` outputs, approved operation scope and completion record, CoreDNS image versions, and relevant errors/audit events. Keep configuration and operation identifiers private when sharing a sanitized result. This test makes no configuration change and requires no cluster cleanup; do not run SP-13 as part of it.
 
-**Established** `**aks01day2**` **evidence:** PARTIAL PASS on 2026-10-02: **the actual upgrade and custom ConfigMap preservation passed; the complete DNS criterion was not met.** This is not a blanket failure of configuration persistence and is not a full SP-15 PASS.
+**Established `aks01day2` evidence:** PARTIAL PASS on 2026-10-02: **the actual upgrade and custom ConfigMap preservation passed; the complete DNS criterion was not met.** This is not a blanket failure of configuration persistence and is not a full SP-15 PASS.
 
 *   **PASS: upgrade and configuration preservation.** The control plane upgraded from `1.35.7` to `1.36.3`, and `coredns-custom` retained its complete data, UID, and resourceVersion. Both node pools remained on 1.35.7, and managed CoreDNS was 2/2 Available after the upgrade.
 *   **Not fully PASS: fixed-address DNS validation.** The retry returned `NOERROR`, but the public test record changed from `150.171.110.195` to `150.171.109.183`. The specific unchanged-address assertion failed because the selected rotating public record did not meet the stable-answer prerequisite. This is not evidence that the custom ConfigMap was reset or lost.
@@ -1356,7 +1356,7 @@ Get-Content -LiteralPath (Join-Path $evidenceDirectory "result.json") -Raw
 
 **Evidence to capture:** The result JSON containing baseline, patched, observation, and cleanup snapshots; all DNS outputs and query times; old/new pod UIDs and rollout times; the exact JSON Patch operations; and cleanup status. Keep the full configuration backup private. Publish only reviewed, sanitized evidence. Retain failed attempts separately. CoreDNS availability can change during rolling restarts; this test checks after rollout completion and at the observation points, not continuous outage-free operation.
 
-**Established** `**aks01day2**` **evidence:** PASS on 2026-10-02 for attempt 2, from `14:24:04.5125497Z` to `14:47:47.7366769Z` UTC including cleanup, on Kubernetes `v1.35.7` with CoreDNS image `mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20`. The existing client in `coredns-failover-validation` checked `kube-system/coredns-custom`. The rule `sp16-dd8b44139468.server` was added once and served `answer.sp16-dd8b44139468.test.` as exactly `192.0.2.123` with `NOERROR` and TTL 1. The same-image isolated preflight passed before managed DNS changed. Both recorded verification rollouts replaced both pod UIDs: activation and a second restart without reapplying the rule. All 31 snapshots from `14:26:47.6348604Z` to `14:46:31.4229211Z` retained patched payload SHA-256 `2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912` and resourceVersion `23735051`, with CoreDNS 2/2 Available in every sample. The stopwatch measured 1,183.785 seconds, exceeding the 900-second requirement. All 31 recorded DNS checks met their assertions: ten positive test-rule answers (one isolated preflight plus nine Service/per-replica checks), 15 correct normal Kubernetes Service answers, and six expected `NXDOMAIN` responses (three before patching and three after cleanup). There were zero recorded errors and the test process exited 0. Cleanup performed the third restart, which is not an entry in the two-element `Rollouts` array; removed only the test key; deleted the temporary syntax pod/ConfigMap; and restored the sole original `test.server` entry, payload SHA-256 `038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63`, and UID `733fabca-7d66-4c20-8d54-08e8d89dd46b`. The custom resourceVersion changed from `23733445` before patching to `23744277` after cleanup, as expected for these writes. The managed main Corefile was unchanged, with resourceVersion still `22591546`. Attempt 1 remains FAIL with cleanup PASS because `hosts` rejected TTL 0; TTL 1 and the isolated preflight corrected that failure. The complete observation, DNS, pod-replacement, and cleanup criteria were met for attempt 2. This does not establish AKS-upgrade or node-replacement persistence, indefinite persistence, or continuous outage-free DNS. See the [readable SP-16 results](../validation/results/aks01day2-custom-config-20261002-sp16.md), [passing raw evidence](../validation/results/aks01day2-custom-config-20261002-sp16-attempt2.json), and [failed first attempt with successful rollback](../validation/results/aks01day2-custom-config-20261002-sp16-attempt1.json).
+**Established `aks01day2` evidence:** PASS on 2026-10-02 for attempt 2, from `14:24:04.5125497Z` to `14:47:47.7366769Z` UTC including cleanup, on Kubernetes `v1.35.7` with CoreDNS image `mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-20`. The existing client in `coredns-failover-validation` checked `kube-system/coredns-custom`. The rule `sp16-dd8b44139468.server` was added once and served `answer.sp16-dd8b44139468.test.` as exactly `192.0.2.123` with `NOERROR` and TTL 1. The same-image isolated preflight passed before managed DNS changed. Both recorded verification rollouts replaced both pod UIDs: activation and a second restart without reapplying the rule. All 31 snapshots from `14:26:47.6348604Z` to `14:46:31.4229211Z` retained patched payload SHA-256 `2F2958B438382F823ABCE5E2C172ABD186618F9CF8557FED701CF0B96D8DC912` and resourceVersion `23735051`, with CoreDNS 2/2 Available in every sample. The stopwatch measured 1,183.785 seconds, exceeding the 900-second requirement. All 31 recorded DNS checks met their assertions: ten positive test-rule answers (one isolated preflight plus nine Service/per-replica checks), 15 correct normal Kubernetes Service answers, and six expected `NXDOMAIN` responses (three before patching and three after cleanup). There were zero recorded errors and the test process exited 0. Cleanup performed the third restart, which is not an entry in the two-element `Rollouts` array; removed only the test key; deleted the temporary syntax pod/ConfigMap; and restored the sole original `test.server` entry, payload SHA-256 `038194A7CD599F56E1FC40D4BDEBEB509434928FF249E9E810E69CEF9FC3CA63`, and UID `733fabca-7d66-4c20-8d54-08e8d89dd46b`. The custom resourceVersion changed from `23733445` before patching to `23744277` after cleanup, as expected for these writes. The managed main Corefile was unchanged, with resourceVersion still `22591546`. Attempt 1 remains FAIL with cleanup PASS because `hosts` rejected TTL 0; TTL 1 and the isolated preflight corrected that failure. The complete observation, DNS, pod-replacement, and cleanup criteria were met for attempt 2. This does not establish AKS-upgrade or node-replacement persistence, indefinite persistence, or continuous outage-free DNS. See the [readable SP-16 results](../validation/results/aks01day2-custom-config-20261002-sp16.md), [passing raw evidence](../validation/results/aks01day2-custom-config-20261002-sp16-attempt2.json), and [failed first attempt with successful rollback](../validation/results/aks01day2-custom-config-20261002-sp16-attempt1.json).
 
 #### Evidence handling
 
