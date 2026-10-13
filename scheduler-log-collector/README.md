@@ -1,5 +1,37 @@
 # AKS Scheduler Reproduction Automation
 
+## Table of Contents
+
+- [Script](#script)
+- [Fastest Safe Test](#fastest-safe-test)
+- [What a Successful Run Looks Like](#what-a-successful-run-looks-like)
+- [What It Does](#what-it-does)
+- [Detailed Execution Walkthrough](#detailed-execution-walkthrough)
+  - [At-a-glance sequence](#at-a-glance-sequence)
+  - [Cluster changes made by the script](#cluster-changes-made-by-the-script)
+  - [Phase 1 - Preflight validation](#phase-1---preflight-validation)
+  - [Phase 2 - Pre-cordon capture, safety cordon, and cordoned baseline](#phase-2---pre-cordon-capture-safety-cordon-and-cordoned-baseline)
+  - [Phase 3 - Workload scheduling specification](#phase-3---workload-scheduling-specification)
+  - [Phase 4 - Controlled uncordon and timed sampling](#phase-4---controlled-uncordon-and-timed-sampling)
+  - [Phase 5 - Safety re-cordon and final capture](#phase-5---safety-re-cordon-and-final-capture)
+  - [Phase 6 - Result summary](#phase-6---result-summary)
+- [Console and Run-Log Progress](#console-and-run-log-progress)
+- [Live Validation](#live-validation)
+- [Safety Requirements](#safety-requirements)
+- [`NodesToCapture` Reference](#nodestocapture-reference)
+  - [How the node list works](#how-the-node-list-works)
+  - [Parameter descriptions](#parameter-descriptions)
+- [Basic Usage](#basic-usage)
+  - [Capture a Job](#capture-a-job)
+  - [Capture a CronJob](#capture-a-cronjob)
+  - [Capture Exactly Three Nodes During a Reproduction](#capture-exactly-three-nodes-during-a-reproduction)
+  - [Capture Three Nodes Without Cordon or Uncordon](#capture-three-nodes-without-cordon-or-uncordon)
+  - [Capture More Feasible Nodes](#capture-more-feasible-nodes)
+- [Output Structure](#output-structure)
+- [Sanitized Workload Export](#sanitized-workload-export)
+- [Important Limitations](#important-limitations)
+- [Decision Guidance](#decision-guidance)
+
 ## Script
 
 [`Collect-AksSchedulerRepro.ps1`](./Collect-AksSchedulerRepro.ps1) automates the
