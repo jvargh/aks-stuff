@@ -229,13 +229,312 @@ early and that node is named in `abortReason` and `run.log`.
 10. Always attempts to re-cordon every listed node in a `finally` block.
 11. Captures final state for every listed node and writes per-node results.
 
+## Detailed Execution Walkthrough
+
+### At-a-glance sequence
+
+```text
+Validate access and node health
+        |
+        v
+Capture every node before cordon
+        |
+        v
+Cordon every listed node
+        |
+        v
+Capture every node while cordoned
+        |
+        v
+Optionally export sanitized Job/CronJob scheduling configuration
+        |
+        v
+Record UTC time and uncordon every listed node
+        |
+        v
+Collect repeated namespace, node, metric, and event samples
+        |
+        v
+Stop at duration or safety threshold
+        |
+        v
+Re-cordon every listed node, even when an earlier step fails
+        |
+        v
+Capture final state and write result files
+```
+
+### Cluster changes made by the script
+
+| Operation | Scope | Effect |
+|---|---|---|
+| `kubectl cordon` | Every node in `-NodesToCapture` | Sets the node unschedulable for new ordinary pods |
+| `kubectl uncordon` | Every node in `-NodesToCapture` | Makes the node eligible for normal scheduling again |
+| Final `kubectl cordon` | Every node in `-NodesToCapture` | Returns every listed node to the required safe state |
+
+The script does **not**:
+
+- drain nodes;
+- delete or restart pods;
+- create workloads;
+- scale node pools or controllers;
+- edit requests, limits, affinity, taints, or tolerations;
+- modify Job or CronJob manifests;
+- retrieve secret values or environment-variable values.
+
+Cordon and uncordon affect new scheduling only. Existing pods continue running.
+
+### Phase 1 - Preflight validation
+
+**Purpose:** Stop before uncordon if the environment cannot support a safe and
+complete collection.
+
+The script:
+
+1. Verifies that `kubectl` is available.
+2. Reads and prints the active Kubernetes context.
+3. Verifies that `-Namespace` exists.
+4. Removes blank and duplicate entries from `-NodesToCapture`.
+5. Verifies that every listed node exists.
+6. Checks permission to patch node schedulability:
+
+   ```text
+   kubectl auth can-i patch nodes
+   ```
+
+7. Checks permission to list pods in the selected namespace.
+8. Verifies that every listed node reports `Ready=True`.
+
+**Cluster state change:** None during the normal phase.
+
+**Completion condition:** Context, namespace, nodes, permissions, and Ready
+state are valid.
+
+**Failure behavior:** The script records the error and enters Phase 5, where it
+attempts to cordon every listed node as a fail-safe.
+
+### Phase 2 - Pre-cordon capture, safety cordon, and cordoned baseline
+
+**Purpose:** Preserve the original state, place every listed node into the same
+unschedulable state, and capture the cordoned baseline before reproduction.
+
+The script first verifies that Metrics Server responds:
+
+```text
+kubectl top nodes
+kubectl top pods -n <namespace> --sort-by=cpu
+```
+
+It then creates `pre-cordon/` and captures:
+
+| Evidence | Collection |
+|---|---|
+| Node configuration and allocated resources | `kubectl describe node <node>` for every listed node |
+| Pods assigned to each node | `kubectl get pods -A -o wide --field-selector spec.nodeName=<node>` |
+| All node labels and wide state | `kubectl get nodes -o wide --show-labels` |
+| Complete node objects | `kubectl get nodes -o json` |
+| Node usage snapshot | `kubectl top nodes` |
+
+The script then cordons every listed node:
+
+```text
+kubectl cordon <node>
+```
+
+Each command result is saved separately as:
+
+```text
+initial-cordon-<node>.txt
+```
+
+After all nodes are cordoned, the same evidence set is captured in `before/`.
+This records allocated resources and assigned pods immediately before
+uncordon, while all listed nodes are unschedulable.
+
+**Cluster state change:** Every listed node becomes cordoned.
+
+**Completion condition:** Every node was captured pre-cordon, cordoned, and
+captured again in the cordoned state.
+
+### Phase 3 - Workload scheduling specification
+
+**Purpose:** Preserve the scheduler-visible workload configuration without
+exporting secret or environment values.
+
+When `-JobName` is supplied, the script reads that Job. When `-CronJobName` is
+supplied, it reads that CronJob. The two options are mutually exclusive.
+
+The sanitized JSON includes:
+
+- resource requests and limits;
+- image and image pull policy;
+- init containers;
+- scheduler name and priority class;
+- node selectors;
+- affinity and anti-affinity;
+- topology-spread constraints;
+- tolerations;
+- RuntimeClass and pod overhead;
+- persistent-volume claim names;
+- Job parallelism or CronJob concurrency settings.
+
+The export excludes:
+
+- environment variables and environment sources;
+- secret values;
+- ConfigMap contents;
+- command-line credentials;
+- secret/configuration volume contents.
+
+If neither workload name is provided, the script logs a warning and continues.
+
+**Cluster state change:** None.
+
+**Output:**
+
+```text
+job-<name>-sanitized-scheduling-spec.json
+```
+
+or:
+
+```text
+cronjob-<name>-sanitized-scheduling-spec.json
+```
+
+### Phase 4 - Controlled uncordon and timed sampling
+
+**Purpose:** Re-enable all listed nodes together and capture scheduling and
+resource behavior for the requested observation window.
+
+The script:
+
+1. Records the UTC start time in `uncordon-start-utc.txt`.
+2. Uncordons every listed node:
+
+   ```text
+   kubectl uncordon <node>
+   ```
+
+3. Saves one result file per node:
+
+   ```text
+   uncordon-<node>.txt
+   ```
+
+4. Starts the observation timer only after all uncordon commands complete.
+5. Starts samples on the configured start-to-start cadence.
+
+Each sample directory contains:
+
+| File | Purpose |
+|---|---|
+| `timestamp-utc.txt` | Exact UTC sample time |
+| `namespace-pods-placement.txt` | Pod, UID, creation time, assigned node, requests, and phase |
+| `namespace-pods.json` | Complete namespace pod objects for deeper analysis |
+| `top-nodes.txt` | Actual node CPU and memory usage |
+| `all-nodes.json` | Node conditions used for Ready-state checks |
+| `top-pods-by-cpu.txt` | Namespace pod CPU/memory usage sorted by CPU |
+| `events.txt` | Namespace events ordered by last timestamp |
+
+From the shared `top-nodes.txt` and `all-nodes.json` snapshots, the script
+records one summary row for every listed node:
+
+```text
+SampleNumber, TimestampUtc, NodeName, NodeCpuPercent, NodeReady
+```
+
+The script evaluates these safety conditions for every node:
+
+- if any node stops reporting `Ready=True`, stop sampling;
+- if any node reaches `-AbortNodeCpuPercent`, stop sampling.
+
+The node that triggered the stop is written to `abortReason`.
+
+**Cluster state change:** Every listed node becomes uncordoned.
+
+**Completion condition:** `-DurationMinutes` expires or a safety condition
+ends the observation early.
+
+### Phase 5 - Safety re-cordon and final capture
+
+**Purpose:** Return every listed node to the required safe state regardless of
+whether an earlier phase succeeded or failed.
+
+This phase runs from a PowerShell `finally` block.
+
+The script:
+
+1. Records the UTC end time in `cordon-end-utc.txt`.
+2. Re-cordons every listed node.
+3. Retries each final cordon up to five times with a five-second delay.
+4. Saves each result:
+
+   ```text
+   final-cordon-<node>.txt
+   ```
+
+5. Stores a Boolean result for every node in `cordonResults`.
+6. Creates `after/` and captures the final evidence set for every node.
+
+**Cluster state change:** Every listed node is returned to cordoned state.
+
+**Critical failure behavior:** If any final cordon fails, the script:
+
+- logs a `CRITICAL` error naming the node;
+- writes the result file;
+- exits with an error instructing the operator to cordon the failed node
+  manually.
+
+### Phase 6 - Result summary
+
+**Purpose:** Provide a machine-readable and operator-readable statement of the
+test outcome.
+
+The script writes:
+
+#### `sample-summary.csv`
+
+One row per node per sample:
+
+```text
+SampleNumber, TimestampUtc, NodeName, NodeCpuPercent, NodeReady
+```
+
+#### `result.json`
+
+Contains:
+
+- UTC start and end times;
+- measured duration;
+- early-abort reason, if any;
+- overall final-cordon success;
+- per-node `cordonResults`;
+- output directory;
+- test error, if any.
+
+#### `run.log`
+
+Contains every phase, step, retry, safety result, sample result, and final
+status shown on the console.
+
+**Successful final state:**
+
+```text
+abortReason: null
+testError: null
+cordonSucceeded: true
+every cordonResults value: true
+every listed node: Ready=True and Unschedulable=true
+```
+
 ## Console and Run-Log Progress
 
 The script emits phase banners and step-level status to both the console and
 `run.log`:
 
 1. Preflight validation
-2. Safety cordon and baseline capture
+2. Pre-cordon capture, safety cordon, and cordoned baseline
 3. Workload scheduling specification
 4. Controlled uncordon and timed sampling
 5. Safety re-cordon and post-test capture
