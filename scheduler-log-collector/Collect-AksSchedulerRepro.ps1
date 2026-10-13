@@ -7,8 +7,9 @@ Collects evidence during a controlled AKS scheduler reproduction.
 .DESCRIPTION
 Captures node requested resources, pod placement, node/pod usage, events, and
 an optional sanitized Job or CronJob scheduling specification. The script
-cordons the test node before baseline capture, uncordons it for the
-configured observation window, and always attempts to re-cordon it.
+captures all listed nodes, cordons all of them, captures the cordoned baseline,
+uncordons all of them for the configured observation window, and always
+attempts to re-cordon every listed node.
 
 This script changes node schedulability. Run only in an approved change window.
 
@@ -83,8 +84,6 @@ $NodesToCapture = @($NodesToCapture |
 if ($NodesToCapture.Count -eq 0) {
     throw 'Specify at least one node with -NodesToCapture.'
 }
-
-$TestNode = $NodesToCapture[0]
 
 if (-not $AcknowledgeImpact) {
     throw 'Run with -AcknowledgeImpact only after change approval and rollback ownership are confirmed.'
@@ -234,9 +233,11 @@ function Get-NodeReadyStatus {
         Select-Object -First 1).status
 }
 
-function Get-TestNodeCpuPercent {
+function Get-NodeCpuPercent {
+    param([Parameter(Mandatory)][string]$NodeName)
+
     $result = Invoke-KubectlText -Arguments @(
-        'top', 'node', $TestNode, '--no-headers'
+        'top', 'node', $NodeName, '--no-headers'
     ) -AllowFailure
 
     if ($result.ExitCode -ne 0 -or [string]::IsNullOrWhiteSpace($result.Text)) {
@@ -365,7 +366,7 @@ function Export-SanitizedWorkloadSpec {
 function Capture-NodeState {
     param(
         [Parameter(Mandatory)]
-        [ValidateSet('before', 'after')]
+        [ValidateSet('pre-cordon', 'before', 'after')]
         [string]$Stage
     )
 
@@ -376,6 +377,12 @@ function Capture-NodeState {
         Write-Step "Capturing '$Stage' describe output for node '$node'."
         Invoke-KubectlText -Arguments @('describe', 'node', $node) `
             -OutputPath (Join-Path $stagePath "$node-describe.txt") | Out-Null
+
+        Write-Step "Capturing '$Stage' pods currently assigned to '$node'."
+        Invoke-KubectlText -Arguments @(
+            'get', 'pods', '-A', '-o', 'wide',
+            '--field-selector', "spec.nodeName=$node"
+        ) -OutputPath (Join-Path $stagePath "$node-pods-wide.txt") | Out-Null
     }
 
     Write-Step "Capturing '$Stage' cluster-wide node inventory and labels."
@@ -383,11 +390,6 @@ function Capture-NodeState {
         -OutputPath (Join-Path $stagePath 'all-nodes-wide.txt') | Out-Null
     Invoke-KubectlText -Arguments @('get', 'nodes', '-o', 'json') `
         -OutputPath (Join-Path $stagePath 'all-nodes.json') | Out-Null
-    Write-Step "Capturing '$Stage' pods currently assigned to '$TestNode'."
-    Invoke-KubectlText -Arguments @(
-        'get', 'pods', '-A', '-o', 'wide',
-        '--field-selector', "spec.nodeName=$TestNode"
-    ) -OutputPath (Join-Path $stagePath 'test-node-pods-wide.txt') | Out-Null
     Write-Step "Capturing '$Stage' node usage snapshot."
     Invoke-KubectlText -Arguments @('top', 'nodes') `
         -OutputPath (Join-Path $stagePath 'top-nodes.txt') -AllowFailure | Out-Null
@@ -416,8 +418,13 @@ function Capture-Sample {
         -OutputPath (Join-Path $samplePath 'namespace-pods.json') | Out-Null
 
     Write-Step "Sample ${SampleNumber}: capturing node CPU and memory usage."
-    Invoke-KubectlText -Arguments @('top', 'nodes') `
-        -OutputPath (Join-Path $samplePath 'top-nodes.txt') -AllowFailure | Out-Null
+    $topNodesResult = Invoke-KubectlText -Arguments @('top', 'nodes') `
+        -OutputPath (Join-Path $samplePath 'top-nodes.txt') -AllowFailure
+
+    Write-Step "Sample ${SampleNumber}: capturing complete node readiness state."
+    $nodesJsonResult = Invoke-KubectlText -Arguments @('get', 'nodes', '-o', 'json') `
+        -OutputPath (Join-Path $samplePath 'all-nodes.json')
+    $nodesState = $nodesJsonResult.Text | ConvertFrom-Json -Depth 100
 
     Write-Step "Sample ${SampleNumber}: capturing namespace pod CPU usage sorted by CPU."
     Invoke-KubectlText -Arguments @(
@@ -429,16 +436,42 @@ function Capture-Sample {
         'get', 'events', '-n', $Namespace, '--sort-by=.lastTimestamp'
     ) -OutputPath (Join-Path $samplePath 'events.txt') -AllowFailure | Out-Null
 
-    Write-Step "Sample ${SampleNumber}: evaluating test-node CPU and Ready safety checks."
-    $cpuPercent = Get-TestNodeCpuPercent
-    $readyStatus = Get-NodeReadyStatus -NodeName $TestNode
-    Write-RunLog "Sample $SampleNumber result: timestamp=$timestamp, nodeCPU=$cpuPercent%, nodeReady=$readyStatus."
+    Write-Step "Sample ${SampleNumber}: evaluating CPU and Ready safety checks for all listed nodes."
+    foreach ($node in $script:TargetNodes) {
+        $cpuPercent = $null
+        if ($topNodesResult.ExitCode -eq 0) {
+            $nodeMetricsLine = $topNodesResult.Text -split '\r?\n' |
+                Where-Object { (($_.Trim()) -split '\s+')[0] -eq $node } |
+                Select-Object -First 1
+            if ($nodeMetricsLine) {
+                $metricsParts = $nodeMetricsLine.Trim() -split '\s+'
+                if ($metricsParts.Count -ge 3) {
+                    $parsedCpu = 0
+                    if ([int]::TryParse(
+                        $metricsParts[2].TrimEnd('%'),
+                        [ref]$parsedCpu
+                    )) {
+                        $cpuPercent = $parsedCpu
+                    }
+                }
+            }
+        }
 
-    [pscustomobject]@{
-        SampleNumber   = $SampleNumber
-        TimestampUtc   = $timestamp
-        NodeCpuPercent = $cpuPercent
-        NodeReady      = $readyStatus
+        $nodeState = $nodesState.items |
+            Where-Object { $_.metadata.name -eq $node } |
+            Select-Object -First 1
+        $readyStatus = ($nodeState.status.conditions |
+            Where-Object type -eq 'Ready' |
+            Select-Object -First 1).status
+        Write-RunLog "Sample $SampleNumber result: timestamp=$timestamp, node=$node, nodeCPU=$cpuPercent%, nodeReady=$readyStatus."
+
+        [pscustomobject]@{
+            SampleNumber   = $SampleNumber
+            TimestampUtc   = $timestamp
+            NodeName       = $node
+            NodeCpuPercent = $cpuPercent
+            NodeReady      = $readyStatus
+        }
     }
 }
 
@@ -450,6 +483,7 @@ $testStarted = $false
 $testError = $null
 $abortReason = $null
 $cordonSucceeded = $false
+$cordonResults = [ordered]@{}
 $startUtc = $null
 $endUtc = $null
 
@@ -487,16 +521,14 @@ try {
         throw "Current identity cannot list pods in namespace '$Namespace'."
     }
 
-    Write-Step "Validating that test node '$TestNode' is Ready."
-    if ((Get-NodeReadyStatus -NodeName $TestNode) -ne 'True') {
-        throw "Test node '$TestNode' is not Ready. Do not run the reproduction."
+    Write-Step 'Validating that every listed node is Ready.'
+    foreach ($node in $script:TargetNodes) {
+        if ((Get-NodeReadyStatus -NodeName $node) -ne 'True') {
+            throw "Node '$node' is not Ready. Do not run the reproduction."
+        }
     }
 
-    Write-Phase -Number 2 -Name 'Safety cordon and baseline capture'
-    Write-Step "Cordoning test node '$TestNode' before baseline capture."
-    Invoke-KubectlText -Arguments @('cordon', $TestNode) `
-        -OutputPath (Join-Path $OutputRoot 'initial-cordon.txt') | Out-Null
-
+    Write-Phase -Number 2 -Name 'Pre-cordon capture, safety cordon, and cordoned baseline'
     Write-Step 'Validating Metrics Server node metrics before uncordon.'
     Invoke-KubectlText -Arguments @('top', 'nodes') `
         -OutputPath (Join-Path $OutputRoot 'preflight-top-nodes.txt') | Out-Null
@@ -505,7 +537,16 @@ try {
         'top', 'pods', '-n', $Namespace, '--sort-by=cpu'
     ) -OutputPath (Join-Path $OutputRoot 'preflight-top-pods.txt') | Out-Null
 
-    Write-Step 'Capturing complete pre-uncordon node state.'
+    Write-Step 'Capturing all listed nodes before cordon.'
+    Capture-NodeState -Stage 'pre-cordon'
+
+    foreach ($node in $script:TargetNodes) {
+        Write-Step "Cordoning node '$node' before baseline capture."
+        Invoke-KubectlText -Arguments @('cordon', $node) `
+            -OutputPath (Join-Path $OutputRoot "initial-cordon-$node.txt") | Out-Null
+    }
+
+    Write-Step 'Capturing all listed nodes while cordoned.'
     Capture-NodeState -Stage before
 
     Write-Phase -Number 3 -Name 'Workload scheduling specification'
@@ -522,8 +563,8 @@ try {
     $metadata = [ordered]@{
         kubectlContext        = $context
         namespace             = $Namespace
-        testNode          = $TestNode
         nodesToCapture        = $script:TargetNodes
+        nodeWorkflow          = 'all nodes: pre-cordon capture, cordon, cordoned capture, uncordon, timed sampling, re-cordon, final capture'
         durationMinutes       = $DurationMinutes
         sampleIntervalSeconds = $SampleIntervalSeconds
         abortNodeCpuPercent   = $AbortNodeCpuPercent
@@ -538,9 +579,11 @@ try {
     $startUtc = (Get-Date).ToUniversalTime()
     $startUtc.ToString('o') |
         Set-Content -LiteralPath (Join-Path $OutputRoot 'uncordon-start-utc.txt')
-    Write-Step "Uncordoning '$TestNode' at $($startUtc.ToString('o'))."
-    Invoke-KubectlText -Arguments @('uncordon', $TestNode) `
-        -OutputPath (Join-Path $OutputRoot 'uncordon.txt') | Out-Null
+    foreach ($node in $script:TargetNodes) {
+        Write-Step "Uncordoning node '$node' at $($startUtc.ToString('o'))."
+        Invoke-KubectlText -Arguments @('uncordon', $node) `
+            -OutputPath (Join-Path $OutputRoot "uncordon-$node.txt") | Out-Null
+    }
     $testStarted = $true
     Write-RunLog "Observation window started: duration=$DurationMinutes minutes, sampleInterval=$SampleIntervalSeconds seconds, CPU abort threshold=$AbortNodeCpuPercent%."
 
@@ -551,19 +594,25 @@ try {
     while ($stopwatch.Elapsed.TotalMinutes -lt $DurationMinutes) {
         $sampleNumber++
         Write-RunLog "SAMPLE $sampleNumber START: elapsed=$([Math]::Round($stopwatch.Elapsed.TotalSeconds, 1)) seconds."
-        $summary = Capture-Sample -SampleNumber $sampleNumber
-        $sampleSummaries.Add($summary)
+        $summaries = @(Capture-Sample -SampleNumber $sampleNumber)
+        foreach ($summary in $summaries) {
+            $sampleSummaries.Add($summary)
 
-        if ($summary.NodeReady -ne 'True') {
-            $abortReason = "Test node Ready status changed to '$($summary.NodeReady)'."
-            Write-RunLog $abortReason 'WARN'
-            break
+            if ($summary.NodeReady -ne 'True') {
+                $abortReason = "Node '$($summary.NodeName)' Ready status changed to '$($summary.NodeReady)'."
+                Write-RunLog $abortReason 'WARN'
+                break
+            }
+
+            if ($null -ne $summary.NodeCpuPercent -and
+                $summary.NodeCpuPercent -ge $AbortNodeCpuPercent) {
+                $abortReason = "Node '$($summary.NodeName)' CPU reached $($summary.NodeCpuPercent)%, meeting the $AbortNodeCpuPercent% abort threshold."
+                Write-RunLog $abortReason 'WARN'
+                break
+            }
         }
 
-        if ($null -ne $summary.NodeCpuPercent -and
-            $summary.NodeCpuPercent -ge $AbortNodeCpuPercent) {
-            $abortReason = "Test node CPU reached $($summary.NodeCpuPercent)%, meeting the $AbortNodeCpuPercent% abort threshold."
-            Write-RunLog $abortReason 'WARN'
+        if ($abortReason) {
             break
         }
 
@@ -606,15 +655,19 @@ finally {
     $endUtc.ToString('o') |
         Set-Content -LiteralPath (Join-Path $OutputRoot 'cordon-end-utc.txt')
 
-    Write-Step "Re-cordoning '$TestNode' at $($endUtc.ToString('o'))."
-    $cordonResult = Invoke-KubectlText -Arguments @('cordon', $TestNode) `
-        -OutputPath (Join-Path $OutputRoot 'final-cordon.txt') -AllowFailure `
-        -MaxAttempts 5 -RetryDelaySeconds 5
-    $cordonSucceeded = $cordonResult.ExitCode -eq 0
+    foreach ($node in $script:TargetNodes) {
+        Write-Step "Re-cordoning node '$node' at $($endUtc.ToString('o'))."
+        $cordonResult = Invoke-KubectlText -Arguments @('cordon', $node) `
+            -OutputPath (Join-Path $OutputRoot "final-cordon-$node.txt") -AllowFailure `
+            -MaxAttempts 5 -RetryDelaySeconds 5
+        $nodeCordonSucceeded = $cordonResult.ExitCode -eq 0
+        $cordonResults[$node] = $nodeCordonSucceeded
 
-    if (-not $cordonSucceeded) {
-        Write-RunLog "CRITICAL: Failed to re-cordon '$TestNode'. Manual intervention is required." 'ERROR'
+        if (-not $nodeCordonSucceeded) {
+            Write-RunLog "CRITICAL: Failed to re-cordon node '$node'. Manual intervention is required." 'ERROR'
+        }
     }
+    $cordonSucceeded = -not ($cordonResults.Values -contains $false)
 
     try {
         Write-Step 'Capturing complete post-test node state.'
@@ -640,6 +693,7 @@ $result = [ordered]@{
     }
     abortReason     = $abortReason
     cordonSucceeded = $cordonSucceeded
+    cordonResults   = $cordonResults
     outputRoot      = $OutputRoot
     testError       = if ($testError) { $testError.Exception.Message } else { $null }
 }
@@ -647,7 +701,10 @@ $result | ConvertTo-Json -Depth 10 |
     Set-Content -LiteralPath (Join-Path $OutputRoot 'result.json') -Encoding utf8
 
 if (-not $cordonSucceeded) {
-    throw "Failed to re-cordon '$TestNode'. Run: kubectl cordon $TestNode"
+    $failedNodes = @($cordonResults.Keys | Where-Object {
+        -not $cordonResults[$_]
+    })
+    throw "Failed to re-cordon nodes: $($failedNodes -join ', '). Run kubectl cordon for each node immediately."
 }
 
 if ($testError) {
@@ -655,7 +712,7 @@ if ($testError) {
 }
 
 Write-RunLog "Collection completed. Evidence saved to '$OutputRoot'."
-Write-RunLog "Final safety state: test node cordoned=$cordonSucceeded."
+Write-RunLog "Final safety state: all listed nodes cordoned=$cordonSucceeded. Per-node results: $($cordonResults | ConvertTo-Json -Compress)."
 Write-RunLog "Test interval: start=$($result.startUtc), end=$($result.endUtc), durationMinutes=$($result.durationMinutes)."
 if ($abortReason) {
     Write-Warning "The test ended early: $abortReason"

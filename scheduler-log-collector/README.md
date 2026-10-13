@@ -36,17 +36,24 @@ Run the two-minute validation:
   -AcknowledgeImpact
 ```
 
-This validates the collector without creating a workload. The first node in
-`-NodesToCapture` is the test node. The script briefly uncordons that node,
-captures all listed nodes, and returns the first node to the cordoned state.
+This validates the collector without creating a workload. Every node in
+`-NodesToCapture` follows the same workflow: capture, cordon, capture while
+cordoned, uncordon, sample, re-cordon, and final capture.
 
-The run normally takes three to five minutes because pre-test and post-test
-evidence collection occurs outside the two-minute observation window.
+The run can take six to ten minutes for four nodes because three detailed node
+captures and safety operations occur outside the two-minute observation window.
 
 ### Verify the Final Node State
 
 ```powershell
-kubectl get node aks-userpool-vmss-node-a `
+$nodes = @(
+  "aks-userpool-vmss-node-a",
+  "aks-userpool-vmss-node-b",
+  "aks-userpool-vmss-node-c",
+  "aks-systempool-vmss-node-s"
+)
+
+kubectl get nodes $nodes `
   -o custom-columns="NAME:.metadata.name,READY:.status.conditions[?(@.type=='Ready')].status,UNSCHEDULABLE:.spec.unschedulable"
 ```
 
@@ -54,7 +61,10 @@ Expected:
 
 ```text
 NAME                               READY   UNSCHEDULABLE
+aks-systempool-vmss-node-s    True    true
 aks-userpool-vmss-node-a   True    true
+aks-userpool-vmss-node-b   True    true
+aks-userpool-vmss-node-c   True    true
 ```
 
 ### Find the Latest Evidence Directory
@@ -75,76 +85,82 @@ Get-Content (Join-Path $latest.FullName "run.log")
 
 ## What a Successful Run Looks Like
 
-The following output was captured after the interface was reduced to the single
-ordered `-NodesToCapture` option. Repetitive collection-step lines are
-abbreviated. Evidence folders and raw scheduler logs are intentionally not included in this repository.
+The following output was captured with the final all-node workflow. Repetitive
+capture steps are abbreviated. The complete run transcript was reviewed during validation; raw logs are intentionally not published.
 
 ```text
 ========== PHASE 1 - Preflight validation ==========
-2026-10-13T05:54:08.0438287Z [INFO] PHASE 1 START: Preflight validation
-2026-10-13T05:54:08.3421986Z [INFO] Active kubectl context: 'aks-test-cluster'.
-2026-10-13T05:54:11.7393879Z [INFO] STEP: Validating target nodes:
+2026-10-13T13:02:59.4298016Z [INFO] PHASE 1 START: Preflight validation
+2026-10-13T13:02:59.6452183Z [INFO] Active kubectl context: 'aks-test-cluster'.
+2026-10-13T13:03:02.8590043Z [INFO] STEP: Validating target nodes:
   aks-userpool-vmss-node-a,
   aks-userpool-vmss-node-b,
   aks-userpool-vmss-node-c,
   aks-systempool-vmss-node-s.
 
-========== PHASE 2 - Safety cordon and baseline capture ==========
-2026-10-13T05:54:35.3495138Z [INFO] PHASE 2 START: Safety cordon and baseline capture
-2026-10-13T05:54:35.3626838Z [INFO] STEP: Cordoning test node before baseline capture.
+========== PHASE 2 - Pre-cordon capture, safety cordon, and cordoned baseline ==========
+2026-10-13T13:04:20.9139560Z [INFO] PHASE 2 START: Pre-cordon capture, safety cordon, and cordoned baseline
+...
+2026-10-13T13:05:26.8817441Z [INFO] STEP: Cordoning node 'aks-userpool-vmss-node-a'.
+2026-10-13T13:05:30.1049975Z [INFO] STEP: Cordoning node 'aks-userpool-vmss-node-b'.
+2026-10-13T13:05:33.4917386Z [INFO] STEP: Cordoning node 'aks-userpool-vmss-node-c'.
+2026-10-13T13:05:36.5879719Z [INFO] STEP: Cordoning node 'aks-systempool-vmss-node-s'.
 ...
 
 ========== PHASE 3 - Workload scheduling specification ==========
-2026-10-13T05:55:30.7562398Z [INFO] PHASE 3 START: Workload scheduling specification
-2026-10-13T05:55:30.7736158Z [WARN] No Job or CronJob name supplied; workload specification export skipped.
+2026-10-13T13:06:37.2115122Z [INFO] PHASE 3 START: Workload scheduling specification
+2026-10-13T13:06:37.2284470Z [WARN] No Job or CronJob name supplied; workload specification export skipped.
 
 ========== PHASE 4 - Controlled uncordon and timed sampling ==========
-2026-10-13T05:55:30.8072222Z [INFO] PHASE 4 START: Controlled uncordon and timed sampling
-2026-10-13T05:55:34.5687720Z [INFO] SAMPLE 1 START: elapsed=0 seconds.
-2026-10-13T05:56:03.7231129Z [INFO] Sample 1 result: nodeCPU=8%, nodeReady=True.
-2026-10-13T05:56:04.8025036Z [INFO] SAMPLE 2 START: elapsed=30.2 seconds.
-2026-10-13T05:56:34.9651954Z [INFO] Sample 2 result: nodeCPU=8%, nodeReady=True.
-2026-10-13T05:56:35.0026915Z [INFO] SAMPLE 3 START: elapsed=60.4 seconds.
-2026-10-13T05:57:03.9844526Z [INFO] Sample 3 result: nodeCPU=8%, nodeReady=True.
-2026-10-13T05:57:05.0155911Z [INFO] SAMPLE 4 START: elapsed=90.5 seconds.
-2026-10-13T05:57:09.7716217Z [WARN] kubectl attempt 1/3 failed for 'get pods -n test-namespace -o json'. Retrying in 3 seconds.
-2026-10-13T05:57:36.8270713Z [INFO] Sample 4 result: nodeCPU=8%, nodeReady=True.
+2026-10-13T13:06:37.2609417Z [INFO] PHASE 4 START: Controlled uncordon and timed sampling
+2026-10-13T13:06:37.2795210Z [INFO] STEP: Uncordoning node 'aks-userpool-vmss-node-a'.
+2026-10-13T13:06:40.7778165Z [INFO] STEP: Uncordoning node 'aks-userpool-vmss-node-b'.
+2026-10-13T13:06:44.1866710Z [INFO] STEP: Uncordoning node 'aks-userpool-vmss-node-c'.
+2026-10-13T13:06:47.4845054Z [INFO] STEP: Uncordoning node 'aks-systempool-vmss-node-s'.
+
+2026-10-13T13:06:53.9991648Z [INFO] SAMPLE 1 START: elapsed=0 seconds.
+2026-10-13T13:07:20.8728281Z [INFO] Sample 1 result: node=aks-userpool-vmss-node-a, nodeCPU=9%, nodeReady=True.
+2026-10-13T13:07:20.8883760Z [INFO] Sample 1 result: node=aks-userpool-vmss-node-b, nodeCPU=8%, nodeReady=True.
+2026-10-13T13:07:20.9037741Z [INFO] Sample 1 result: node=aks-userpool-vmss-node-c, nodeCPU=7%, nodeReady=True.
+2026-10-13T13:07:20.9190496Z [INFO] Sample 1 result: node=aks-systempool-vmss-node-s, nodeCPU=6%, nodeReady=True.
+
+2026-10-13T13:07:24.8836635Z [INFO] SAMPLE 2 START: elapsed=30.9 seconds.
+2026-10-13T13:07:50.7395612Z [INFO] Sample 2 completed for all four nodes.
+2026-10-13T13:07:54.7564953Z [INFO] SAMPLE 3 START: elapsed=60.8 seconds.
+2026-10-13T13:08:20.2072027Z [INFO] Sample 3 completed for all four nodes.
+2026-10-13T13:08:24.2184244Z [INFO] SAMPLE 4 START: elapsed=90.2 seconds.
+2026-10-13T13:08:50.3081012Z [INFO] Sample 4 completed for all four nodes.
 
 ========== PHASE 5 - Safety re-cordon and post-test capture ==========
-2026-10-13T05:57:36.8698992Z [INFO] PHASE 5 START: Safety re-cordon and post-test capture
-2026-10-13T05:57:36.8869540Z [INFO] STEP: Re-cordoning test node.
+2026-10-13T13:08:54.3637826Z [INFO] PHASE 5 START: Safety re-cordon and post-test capture
+2026-10-13T13:08:54.3783040Z [INFO] STEP: Re-cordoning node 'aks-userpool-vmss-node-a'.
+2026-10-13T13:08:58.1323615Z [INFO] STEP: Re-cordoning node 'aks-userpool-vmss-node-b'.
+2026-10-13T13:09:01.9798287Z [INFO] STEP: Re-cordoning node 'aks-userpool-vmss-node-c'.
+2026-10-13T13:09:05.7388765Z [INFO] STEP: Re-cordoning node 'aks-systempool-vmss-node-s'.
 ...
 
 ========== PHASE 6 - Result summary ==========
-2026-10-13T05:58:23.7547872Z [INFO] PHASE 6 START: Result summary
-2026-10-13T05:58:23.7794854Z [INFO] Collection completed.
-2026-10-13T05:58:23.7950225Z [INFO] Final safety state: test node cordoned=True.
-2026-10-13T05:58:23.8175471Z [INFO] Test interval:
-  start=2026-10-13T05:55:30.8210541Z,
-  end=2026-10-13T05:57:36.8869540Z,
-  durationMinutes=2.1.
+2026-10-13T13:10:01.5907559Z [INFO] PHASE 6 START: Result summary
+2026-10-13T13:10:01.6159537Z [INFO] Collection completed.
+2026-10-13T13:10:01.6297427Z [INFO] Final safety state: all listed nodes cordoned=True.
 ```
 
-Warnings followed by a successful retry are expected for transient API errors.
-The run is successful when Phase 6 reports `Collection completed` and
-`test node cordoned=True`.
+The run is successful when Phase 6 reports `Collection completed`,
+`all listed nodes cordoned=True`, and every entry in `cordonResults` is `true`.
 
 ### Successful `run-metadata.json`
-
-This confirms the single-option behavior. The first entry is the test node;
-all later entries are capture-only nodes.
 
 ```json
 {
   "kubectlContext": "aks-test-cluster",
   "namespace": "test-namespace",
-  "testNode": "aks-userpool-vmss-node-a",
   "nodesToCapture": [
     "aks-userpool-vmss-node-a",
     "aks-userpool-vmss-node-b",
     "aks-userpool-vmss-node-c",
     "aks-systempool-vmss-node-s"
   ],
+  "nodeWorkflow": "all nodes: pre-cordon capture, cordon, cordoned capture, uncordon, timed sampling, re-cordon, final capture",
   "durationMinutes": 2,
   "sampleIntervalSeconds": 30,
   "abortNodeCpuPercent": 90
@@ -155,57 +171,63 @@ all later entries are capture-only nodes.
 
 ```json
 {
-  "startUtc": "2026-10-13T05:55:30.8210541Z",
-  "endUtc": "2026-10-13T05:57:36.8869540Z",
-  "durationMinutes": 2.1,
+  "startUtc": "2026-10-13T13:06:37.2779106Z",
+  "endUtc": "2026-10-13T13:08:54.3760425Z",
+  "durationMinutes": 2.28,
   "abortReason": null,
   "cordonSucceeded": true,
+  "cordonResults": {
+    "aks-userpool-vmss-node-a": true,
+    "aks-userpool-vmss-node-b": true,
+    "aks-userpool-vmss-node-c": true,
+    "aks-systempool-vmss-node-s": true
+  },
   "outputRoot": "C:\\Users\\<user>\\Downloads\\scheduler-log-collector\\aks-test-output",
   "testError": null
 }
 ```
 
-Success indicators:
-
-- `abortReason` is `null`;
-- `cordonSucceeded` is `true`;
-- `testError` is `null`.
-
 ### Successful `sample-summary.csv`
 
+Each sample contains one row per listed node:
+
 ```csv
-"SampleNumber","TimestampUtc","NodeCpuPercent","NodeReady"
-"1","2026-10-13T05:55:34.5877017Z","8","True"
-"2","2026-10-13T05:56:04.8198588Z","8","True"
-"3","2026-10-13T05:56:35.0185801Z","8","True"
-"4","2026-10-13T05:57:05.0326131Z","8","True"
+"SampleNumber","TimestampUtc","NodeName","NodeCpuPercent","NodeReady"
+"1","2026-10-13T13:06:54.0346699Z","aks-userpool-vmss-node-a","9","True"
+"1","2026-10-13T13:06:54.0346699Z","aks-userpool-vmss-node-b","8","True"
+"1","2026-10-13T13:06:54.0346699Z","aks-userpool-vmss-node-c","7","True"
+"1","2026-10-13T13:06:54.0346699Z","aks-systempool-vmss-node-s","6","True"
+...
+"4","2026-10-13T13:08:24.2523758Z","aks-userpool-vmss-node-a","9","True"
+"4","2026-10-13T13:08:24.2523758Z","aks-userpool-vmss-node-b","9","True"
+"4","2026-10-13T13:08:24.2523758Z","aks-userpool-vmss-node-c","7","True"
+"4","2026-10-13T13:08:24.2523758Z","aks-systempool-vmss-node-s","7","True"
 ```
 
-Every sample should normally show `NodeReady=True`. If the CPU threshold is
-reached or Ready changes, the test ends early and the reason appears in
-`abortReason` and `run.log`.
+If any node reaches the CPU threshold or stops reporting Ready, the test ends
+early and that node is named in `abortReason` and `run.log`.
 
 ## What It Does
 
 1. Validates `kubectl`, context, namespace, nodes, permissions, node readiness,
    and Metrics Server access.
-2. Cordon-protects node `aks-compute-vmss-node-a`.
-3. Captures `kubectl describe node` for nodes `...000007`, `...000008`, and
-   `...000005`.
-4. Optionally exports a sanitized Job or CronJob scheduling specification.
-5. Records the exact UTC uncordon timestamp.
-6. Uncordons node `...000007`.
-7. Samples every 60 seconds for 10 minutes by default:
+2. Captures every listed node before cordon.
+3. Cordons every listed node.
+4. Captures every listed node while cordoned.
+5. Optionally exports a sanitized Job or CronJob scheduling specification.
+6. Records the exact UTC uncordon timestamp.
+7. Uncordons every listed node.
+8. Samples every 60 seconds for 10 minutes by default:
    - pod placement and requests;
    - complete namespace pod JSON;
    - `kubectl top nodes`;
    - `kubectl top pods`;
    - namespace events;
-   - test-node CPU and Ready status.
-8. Stops early if test-node CPU reaches the configured threshold or the
-   node stops reporting Ready.
-9. Always attempts to re-cordon the node in a `finally` block.
-10. Captures post-test node state and writes a result summary.
+   - per-node CPU and Ready status for every listed node.
+9. Stops early if any listed node reaches the CPU threshold or stops reporting
+   Ready.
+10. Always attempts to re-cordon every listed node in a `finally` block.
+11. Captures final state for every listed node and writes per-node results.
 
 ## Console and Run-Log Progress
 
@@ -219,10 +241,10 @@ The script emits phase banners and step-level status to both the console and
 5. Safety re-cordon and post-test capture
 6. Result summary
 
-Each sample reports the actions being collected and then prints the affected
+Each sample reports the actions being collected and then prints every listed
 node's observed CPU percentage and Ready status. It also announces the wait
-until the next sample, early-abort reason, final cordon result, test interval,
-and output directory.
+until the next sample, early-abort reason, per-node final cordon results, test
+interval, and output directory.
 
 Transient `kubectl` failures are retried up to three times. The final safety
 cordon is retried up to five times with a five-second delay.
@@ -240,7 +262,6 @@ NodesToCapture, in order:
   aks-userpool-vmss-node-b
   aks-userpool-vmss-node-c
   aks-systempool-vmss-node-s
-Test node: first entry, aks-userpool-vmss-node-a
 Duration: 2 minutes
 Requested sample cadence: 30 seconds
 CPU abort threshold: 90%
@@ -249,16 +270,17 @@ CPU abort threshold: 90%
 Result:
 
 - all six phases completed;
-- four samples were captured;
-- observed sample-start intervals were 30.23, 30.20, and 30.01 seconds;
+- four samples were captured for all four nodes, producing 16 sample rows;
+- observed sample-start intervals were approximately 30.88, 29.87, and 29.46 seconds;
 - transient API connection resets were retried successfully;
-- the node remained Ready;
-- test-node CPU stayed at 8%;
+- all nodes remained Ready;
+- node CPU remained between 6% and 9%;
 - no abort threshold was reached;
-- 51 evidence files were produced;
-- four node descriptions were captured before and after the test;
-- the final safety cordon succeeded;
-- the target node finished Ready and unschedulable.
+- 81 evidence files were produced;
+- four node descriptions were captured at pre-cordon, cordoned-baseline, and
+  final stages;
+- all four final safety cordons succeeded;
+- every listed node finished Ready and unschedulable.
 
 The validation evidence bundle was reviewed before publication but is intentionally not included in this repository.
 
@@ -286,31 +308,23 @@ The script has one node option:
 -NodesToCapture @("node007", "node008", "node005")
 ```
 
-Node order defines behavior:
-
-| Position | Role | Schedulability changed? | Evidence collected |
-|---|---|---|---|
-| First node | Test node | **Yes**. Cordoned for baseline, uncordoned during sampling, and re-cordoned at the end | Detailed before/after node output and safety checks |
-| Every later node | Capture-only node | No | Detailed before/after node output |
-
-For the example above:
+Every listed node follows the same behavior:
 
 ```text
-node007 - test node; cordoned, uncordoned, then re-cordoned
-node008 - captured only
-node005 - captured only
+node007 - captured, cordoned, captured, uncordoned, sampled, re-cordoned, captured
+node008 - captured, cordoned, captured, uncordoned, sampled, re-cordoned, captured
+node005 - captured, cordoned, captured, uncordoned, sampled, re-cordoned, captured
 ```
 
-To capture exactly three nodes, provide exactly three node names. To capture
-more feasible nodes, append more names. The script always changes
-schedulability only for the first entry.
+Node order does not change behavior. To process exactly three nodes, provide
+exactly three names. To process more feasible nodes, append more names.
 
 ### Parameter descriptions
 
 | Parameter | Required | Default | Purpose |
 |---|---|---|---|
 | `-Namespace` | Yes | None | Namespace whose pod placement, requests, usage, and events are sampled |
-| `-NodesToCapture` | Yes | None | Ordered list of nodes. The first is the test node; all remaining nodes are capture-only |
+| `-NodesToCapture` | Yes | None | One or many nodes that all receive the complete capture/cordon/uncordon/re-cordon workflow |
 | `-DurationMinutes` | No | 10 | Length of the uncordoned observation window |
 | `-SampleIntervalSeconds` | No | 60 | Target start-to-start interval between samples |
 | `-AbortNodeCpuPercent` | No | 90 | Re-cordon early when test-node CPU reaches this value |
@@ -363,8 +377,8 @@ schedule, concurrency settings, Job settings, and pod placement configuration.
 
 ### Capture Exactly Three Nodes During a Reproduction
 
-**Purpose:** Use the first node as the test node and capture detailed
-before/after descriptions for all three nodes.
+**Purpose:** Apply the same capture, cordon, uncordon, sample, and re-cordon
+workflow to exactly three nodes.
 
 ```powershell
 .\Collect-AksSchedulerRepro.ps1 `
@@ -380,8 +394,8 @@ before/after descriptions for all three nodes.
 ### Capture Three Nodes Without Cordon or Uncordon
 
 If the goal is only to collect three node outputs, do **not** use the
-reproduction script. The reproduction script always changes the
-first node's schedulability.
+reproduction script. The reproduction script changes schedulability for every
+node in `-NodesToCapture`.
 
 Use this read-only PowerShell block instead:
 
@@ -433,9 +447,8 @@ It does not:
 
 ### Capture More Feasible Nodes
 
-**Purpose:** During a scheduler reproduction, capture every node that was
-feasible for the target workload. The first node is the test node; every
-listed node receives detailed before/after captures.
+**Purpose:** During a scheduler reproduction, apply the same workflow to every
+node that was feasible for the target workload.
 
 ```powershell
 .\Collect-AksSchedulerRepro.ps1 `
@@ -455,12 +468,25 @@ The script creates a timestamped directory:
 
 ```text
 aks-scheduler-repro-YYYYMMDDTHHMMSSZ/
+├── pre-cordon/
+│   ├── <node>-describe.txt
+│   └── <node>-pods-wide.txt
 ├── before/
+│   ├── <node>-describe.txt
+│   └── <node>-pods-wide.txt
 ├── samples/
 │   ├── sample-001/
+│   │   ├── all-nodes.json
+│   │   ├── top-nodes.txt
+│   │   └── ...
 │   ├── sample-002/
 │   └── ...
 ├── after/
+│   ├── <node>-describe.txt
+│   └── <node>-pods-wide.txt
+├── initial-cordon-<node>.txt
+├── uncordon-<node>.txt
+├── final-cordon-<node>.txt
 ├── run.log
 ├── run-metadata.json
 ├── sample-summary.csv
